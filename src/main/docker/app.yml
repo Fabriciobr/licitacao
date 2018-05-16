@@ -1,0 +1,14 @@
+version: '2'
+services:
+    licitacao-app:
+        image: licitacao
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://licitacao-postgresql:5432/licitacao
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    licitacao-postgresql:
+        extends:
+            file: postgresql.yml
+            service: licitacao-postgresql
