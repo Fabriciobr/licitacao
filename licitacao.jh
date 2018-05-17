@@ -1,0 +1,97 @@
+entity Operador {
+	nome String
+}
+
+entity AlteracaoLicitacao {
+	operador Operador required
+    situacao SituacaoLicitacao required
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity SituacaoLicitacao {
+
+}
+
+entity MotivoAlteracao {
+	nome String required
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity MensagemLicitacao {
+	operador Operador
+	hora DateTime
+    participante Fornecedor
+    mensagem String
+}
+
+entity ItemLicitacao {
+	produto Produto
+    Quantidade Integer
+    descricao String
+}
+
+entity Disputa {
+	licitacao Licitacao
+    lote LoteLicitacao
+    melhorLance Double
+    melhorProposta Double
+    variacao Float
+    Duracao Float 
+    
+}
+
+/**
+ * The Employee entity.
+ */
+entity Fornecedor {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	hireDate Instant,
+	salary Long,
+	commissionPct Long
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Employee{job} to Job,
+	/**
+	* A relationship
+	*/
+	Department{employee} to
+	/**
+	* Another side of the same relationship
+	*/
+	Employee
+}
+
+relationship ManyToOne {
+	Employee{manager} to Employee
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+	JobHistory{job} to Job,
+	JobHistory{department} to Department,
+	JobHistory{employee} to Employee
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+// Set an angular suffix
+//angularSuffix * with mySuffix
