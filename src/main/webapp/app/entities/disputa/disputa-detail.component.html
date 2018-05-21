@@ -1,0 +1,50 @@
+
+<div *ngIf="disputa">
+    <h2><span>Disputa</span> {{disputa.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Melhor Lance</span></dt>
+        <dd>
+            <span>{{disputa.melhorLance}}</span>
+        </dd>
+        <dt><span>Melhor Proposta</span></dt>
+        <dd>
+            <span>{{disputa.melhorProposta}}</span>
+        </dd>
+        <dt><span>Variacao</span></dt>
+        <dd>
+            <span>{{disputa.variacao}}</span>
+        </dd>
+        <dt><span>Duracao</span></dt>
+        <dd>
+            <span>{{disputa.duracao}}</span>
+        </dd>
+        <dt><span>Lote Licitacao</span></dt>
+        <dd>
+            <div *ngIf="disputa.loteLicitacao">
+                <a [routerLink]="['/lote-licitacao', disputa.loteLicitacao?.id]">{{disputa.loteLicitacao?.numero}}</a>
+            </div>
+        </dd>
+        <dt><span>Participantes</span></dt>
+        <dd>
+            <span *ngFor="let participantes of disputa.participantes; let last = last">
+                <a [routerLink]="['/fornecedor', participantes?.id ]">{{participantes.nome}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'disputa/'+ disputa.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

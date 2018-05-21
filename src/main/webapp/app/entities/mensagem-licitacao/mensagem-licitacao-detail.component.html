@@ -1,0 +1,40 @@
+
+<div *ngIf="mensagemLicitacao">
+    <h2><span>Mensagem Licitacao</span> {{mensagemLicitacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nome</span></dt>
+        <dd>
+            <span>{{mensagemLicitacao.nome}}</span>
+        </dd>
+        <dt><span>Data Hora</span></dt>
+        <dd>
+            <span>{{mensagemLicitacao.dataHora | date:'medium'}}</span>
+        </dd>
+        <dt><span>Mensagem</span></dt>
+        <dd>
+            <span>{{mensagemLicitacao.mensagem}}</span>
+        </dd>
+        <dt><span>Licitacao</span></dt>
+        <dd>
+            <div *ngIf="mensagemLicitacao.licitacao">
+                <a [routerLink]="['/licitacao', mensagemLicitacao.licitacao?.id]">{{mensagemLicitacao.licitacao?.numero}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mensagem-licitacao/'+ mensagemLicitacao.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

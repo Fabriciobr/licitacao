@@ -1,0 +1,151 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lotes",
+            "otherEntityName": "loteLicitacao",
+            "otherEntityRelationshipName": "licitacao"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "documentos",
+            "otherEntityName": "anexo",
+            "otherEntityRelationshipName": "licitacao"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "alteracoes",
+            "otherEntityName": "alteracaoLicitacao",
+            "otherEntityRelationshipName": "licitacao"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "interessados",
+            "otherEntityName": "fornecedor",
+            "otherEntityRelationshipName": "licitacao"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "entidade",
+            "otherEntityName": "entidade",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "unidadeOrganizacional",
+            "otherEntityName": "unidadeOrganizacional",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pregoeiro",
+            "otherEntityName": "operador",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "mensagens",
+            "otherEntityName": "mensagemLicitacao",
+            "otherEntityRelationshipName": "licitacao"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoCadastro",
+            "fieldType": "TipoCadastro",
+            "fieldValues": "AQUISICAO,SIMULACAO"
+        },
+        {
+            "fieldName": "edital",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "processo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modalidade",
+            "fieldType": "ModalidadeLicitacao",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "tipoParticipacaoFornecedor",
+            "fieldType": "TipoParticipacaoFornecedor",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "formaConducao",
+            "fieldType": "FormaConducao",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoLicitacao",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "moeda",
+            "fieldType": "Moeda",
+            "fieldValues": "REAL,DOLAR,EURO"
+        },
+        {
+            "fieldName": "prazoImpugnacao",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "inicioAcolhimentoPropostas",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataHoraDisputa",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "aberturaPropostas",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "abrangenciaDisputa",
+            "fieldType": "AbrangenciaDisputa",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "tipoMoedaProposta",
+            "fieldType": "TipoMoedaProposta",
+            "fieldValues": "MOEDA_DA_PROPOSTA,MOEDA_DO_PAIS_DO_FORNECEDOR"
+        },
+        {
+            "fieldName": "resumo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "aliquotaDiferenciada",
+            "fieldType": "TipoAliquotaDiferenciada",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoLicitacao",
+            "fieldValues": "SITUACAO,SITU2"
+        },
+        {
+            "fieldName": "dataHoraPublicacao",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "ata",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180521112117",
+    "entityTableName": "licitacao",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

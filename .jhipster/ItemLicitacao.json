@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "lote",
+            "otherEntityName": "loteLicitacao",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "produto",
+            "otherEntityName": "produto",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantidade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180521112121",
+    "entityTableName": "item_licitacao",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

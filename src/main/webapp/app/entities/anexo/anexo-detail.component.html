@@ -1,0 +1,32 @@
+
+<div *ngIf="anexo">
+    <h2><span>Anexo</span> {{anexo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nome</span></dt>
+        <dd>
+            <span>{{anexo.nome}}</span>
+        </dd>
+        <dt><span>Licitacao</span></dt>
+        <dd>
+            <div *ngIf="anexo.licitacao">
+                <a [routerLink]="['/licitacao', anexo.licitacao?.id]">{{anexo.licitacao?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'anexo/'+ anexo.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

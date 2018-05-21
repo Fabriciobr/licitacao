@@ -1,0 +1,58 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDisputaLabel">Create or edit a Disputa</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!disputa.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="disputa.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_melhorLance">Melhor Lance</label>
+            <input type="number" class="form-control" name="melhorLance" id="field_melhorLance"
+                [(ngModel)]="disputa.melhorLance" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_melhorProposta">Melhor Proposta</label>
+            <input type="number" class="form-control" name="melhorProposta" id="field_melhorProposta"
+                [(ngModel)]="disputa.melhorProposta" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_variacao">Variacao</label>
+            <input type="number" class="form-control" name="variacao" id="field_variacao"
+                [(ngModel)]="disputa.variacao" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_duracao">Duracao</label>
+            <input type="number" class="form-control" name="duracao" id="field_duracao"
+                [(ngModel)]="disputa.duracao" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_loteLicitacao">Lote Licitacao</label>
+            <select class="form-control" id="field_loteLicitacao" name="loteLicitacao" [(ngModel)]="disputa.loteLicitacao" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="loteLicitacaoOption.id === disputa.loteLicitacao?.id ? disputa.loteLicitacao : loteLicitacaoOption" *ngFor="let loteLicitacaoOption of lotelicitacaos; trackBy: trackLoteLicitacaoById">{{loteLicitacaoOption.numero}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_participantes">Participantes</label>
+            <select class="form-control" id="field_participantes" multiple name="participantes" [(ngModel)]="disputa.participantes">
+                <option [ngValue]="getSelected(disputa.participantes, fornecedorOption)" *ngFor="let fornecedorOption of fornecedors; trackBy: trackFornecedorById">{{fornecedorOption.nome}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

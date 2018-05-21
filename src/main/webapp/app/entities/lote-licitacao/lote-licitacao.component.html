@@ -1,0 +1,104 @@
+<div>
+    <h2>
+        <span>Lote Licitacaos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-lote-licitacao" [routerLink]="['/', { outlets: { popup: ['lote-licitacao-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Lote Licitacao
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="loteLicitacaos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Numero</span></th>
+            <th><span>Tipo Disputa</span></th>
+            <th><span>Criterio Selecao</span></th>
+            <th><span>Tratamento Diferenciado Me</span></th>
+            <th><span>Exclusividade Me</span></th>
+            <th><span>Tempo Minimo Entre Lances</span></th>
+            <th><span>Tempo Minimo Melhor Lance</span></th>
+            <th><span>Valor Minimo Entre Lances</span></th>
+            <th><span>Valor Minimo Melhor Lance</span></th>
+            <th><span>Descricao</span></th>
+            <th><span>Situacao</span></th>
+            <th><span>Valor Selecionado</span></th>
+            <th><span>Valor Estimado</span></th>
+            <th><span>Valor Adjudcado</span></th>
+            <th><span>Situacao Fornecedor</span></th>
+            <th><span>Licitacao</span></th>
+            <th><span>Fornecedor Selecionado</span></th>
+            <th><span>Tempo Randomico</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let loteLicitacao of loteLicitacaos ;trackBy: trackId">
+                <td><a [routerLink]="['../lote-licitacao', loteLicitacao.id ]">{{loteLicitacao.id}}</a></td>
+                <td>{{loteLicitacao.numero}}</td>
+                <td>{{loteLicitacao.tipoDisputa}}</td>
+                <td>{{loteLicitacao.criterioSelecao}}</td>
+                <td>{{loteLicitacao.tratamentoDiferenciadoMe}}</td>
+                <td>{{loteLicitacao.exclusividadeMe}}</td>
+                <td>{{loteLicitacao.tempoMinimoEntreLances}}</td>
+                <td>{{loteLicitacao.tempoMinimoMelhorLance}}</td>
+                <td>{{loteLicitacao.valorMinimoEntreLances}}</td>
+                <td>{{loteLicitacao.valorMinimoMelhorLance}}</td>
+                <td>{{loteLicitacao.descricao}}</td>
+                <td>{{loteLicitacao.situacao}}</td>
+                <td>{{loteLicitacao.valorSelecionado}}</td>
+                <td>{{loteLicitacao.valorEstimado}}</td>
+                <td>{{loteLicitacao.valorAdjudcado}}</td>
+                <td>{{loteLicitacao.situacaoFornecedor}}</td>
+                <td>
+                    <div *ngIf="loteLicitacao.licitacao">
+                        <a [routerLink]="['../licitacao', loteLicitacao.licitacao?.id ]" >{{loteLicitacao.licitacao?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="loteLicitacao.fornecedorSelecionado">
+                        <a [routerLink]="['../fornecedor', loteLicitacao.fornecedorSelecionado?.id ]" >{{loteLicitacao.fornecedorSelecionado?.nome}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="loteLicitacao.tempoRandomico">
+                        <a [routerLink]="['../tempo-randomico', loteLicitacao.tempoRandomico?.id ]" >{{loteLicitacao.tempoRandomico?.nome}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../lote-licitacao', loteLicitacao.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lote-licitacao/'+ loteLicitacao.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lote-licitacao/'+ loteLicitacao.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

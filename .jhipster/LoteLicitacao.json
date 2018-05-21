@@ -1,0 +1,101 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "licitacao",
+            "otherEntityName": "licitacao",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fornecedorSelecionado",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tempoRandomico",
+            "otherEntityName": "tempoRandomico",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itens",
+            "otherEntityName": "itemLicitacao",
+            "otherEntityRelationshipName": "lote"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoDisputa",
+            "fieldType": "TipoDisputa",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "criterioSelecao",
+            "fieldType": "CriterioSelecao",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "tratamentoDiferenciadoMe",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "exclusividadeMe",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "tempoMinimoEntreLances",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tempoMinimoMelhorLance",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valorMinimoEntreLances",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorMinimoMelhorLance",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoLote",
+            "fieldValues": "TIPO1,TIPO2"
+        },
+        {
+            "fieldName": "valorSelecionado",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorEstimado",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorAdjudcado",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "situacaoFornecedor",
+            "fieldType": "SituacaoFornecedor",
+            "fieldValues": "TIPO1,TIPO2"
+        }
+    ],
+    "changelogDate": "20180521112120",
+    "entityTableName": "lote_licitacao",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

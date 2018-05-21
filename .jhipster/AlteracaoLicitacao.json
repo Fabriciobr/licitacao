@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "licitacao",
+            "otherEntityName": "licitacao",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "operador",
+            "otherEntityName": "operador",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "situacao",
+            "fieldType": "SituacaoLicitacao",
+            "fieldValues": "SITUACAO,SITU2",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "motivo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180521112123",
+    "entityTableName": "alteracao_licitacao",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Mensagem Licitacaos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-mensagem-licitacao" [routerLink]="['/', { outlets: { popup: ['mensagem-licitacao-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Mensagem Licitacao
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mensagemLicitacaos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Nome</span></th>
+            <th><span>Data Hora</span></th>
+            <th><span>Mensagem</span></th>
+            <th><span>Licitacao</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mensagemLicitacao of mensagemLicitacaos ;trackBy: trackId">
+                <td><a [routerLink]="['../mensagem-licitacao', mensagemLicitacao.id ]">{{mensagemLicitacao.id}}</a></td>
+                <td>{{mensagemLicitacao.nome}}</td>
+                <td>{{mensagemLicitacao.dataHora | date:'medium'}}</td>
+                <td>{{mensagemLicitacao.mensagem}}</td>
+                <td>
+                    <div *ngIf="mensagemLicitacao.licitacao">
+                        <a [routerLink]="['../licitacao', mensagemLicitacao.licitacao?.id ]" >{{mensagemLicitacao.licitacao?.numero}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../mensagem-licitacao', mensagemLicitacao.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mensagem-licitacao/'+ mensagemLicitacao.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mensagem-licitacao/'+ mensagemLicitacao.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

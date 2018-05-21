@@ -1,0 +1,175 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLicitacaoLabel">Create or edit a Licitacao</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!licitacao.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="licitacao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_numero">Numero</label>
+            <input type="text" class="form-control" name="numero" id="field_numero"
+                [(ngModel)]="licitacao.numero" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipoCadastro">Tipo Cadastro</label>
+            <select class="form-control" name="tipoCadastro" [(ngModel)]="licitacao.tipoCadastro" id="field_tipoCadastro" >
+                <option value="AQUISICAO">AQUISICAO</option>
+                <option value="SIMULACAO">SIMULACAO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_edital">Edital</label>
+            <input type="text" class="form-control" name="edital" id="field_edital"
+                [(ngModel)]="licitacao.edital" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_processo">Processo</label>
+            <input type="text" class="form-control" name="processo" id="field_processo"
+                [(ngModel)]="licitacao.processo" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_modalidade">Modalidade</label>
+            <select class="form-control" name="modalidade" [(ngModel)]="licitacao.modalidade" id="field_modalidade" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipoParticipacaoFornecedor">Tipo Participacao Fornecedor</label>
+            <select class="form-control" name="tipoParticipacaoFornecedor" [(ngModel)]="licitacao.tipoParticipacaoFornecedor" id="field_tipoParticipacaoFornecedor" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_formaConducao">Forma Conducao</label>
+            <select class="form-control" name="formaConducao" [(ngModel)]="licitacao.formaConducao" id="field_formaConducao" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipo">Tipo</label>
+            <select class="form-control" name="tipo" [(ngModel)]="licitacao.tipo" id="field_tipo" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_moeda">Moeda</label>
+            <select class="form-control" name="moeda" [(ngModel)]="licitacao.moeda" id="field_moeda" >
+                <option value="REAL">REAL</option>
+                <option value="DOLAR">DOLAR</option>
+                <option value="EURO">EURO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_prazoImpugnacao">Prazo Impugnacao</label>
+            <input type="number" class="form-control" name="prazoImpugnacao" id="field_prazoImpugnacao"
+                [(ngModel)]="licitacao.prazoImpugnacao" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inicioAcolhimentoPropostas">Inicio Acolhimento Propostas</label>
+            <div class="d-flex">
+                <input id="field_inicioAcolhimentoPropostas" type="datetime-local" class="form-control" name="inicioAcolhimentoPropostas" [(ngModel)]="licitacao.inicioAcolhimentoPropostas"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dataHoraDisputa">Data Hora Disputa</label>
+            <div class="d-flex">
+                <input id="field_dataHoraDisputa" type="datetime-local" class="form-control" name="dataHoraDisputa" [(ngModel)]="licitacao.dataHoraDisputa"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_aberturaPropostas">Abertura Propostas</label>
+            <div class="d-flex">
+                <input id="field_aberturaPropostas" type="datetime-local" class="form-control" name="aberturaPropostas" [(ngModel)]="licitacao.aberturaPropostas"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_abrangenciaDisputa">Abrangencia Disputa</label>
+            <select class="form-control" name="abrangenciaDisputa" [(ngModel)]="licitacao.abrangenciaDisputa" id="field_abrangenciaDisputa" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipoMoedaProposta">Tipo Moeda Proposta</label>
+            <select class="form-control" name="tipoMoedaProposta" [(ngModel)]="licitacao.tipoMoedaProposta" id="field_tipoMoedaProposta" >
+                <option value="MOEDA_DA_PROPOSTA">MOEDA_DA_PROPOSTA</option>
+                <option value="MOEDA_DO_PAIS_DO_FORNECEDOR">MOEDA_DO_PAIS_DO_FORNECEDOR</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_resumo">Resumo</label>
+            <input type="text" class="form-control" name="resumo" id="field_resumo"
+                [(ngModel)]="licitacao.resumo" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_aliquotaDiferenciada">Aliquota Diferenciada</label>
+            <select class="form-control" name="aliquotaDiferenciada" [(ngModel)]="licitacao.aliquotaDiferenciada" id="field_aliquotaDiferenciada" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_situacao">Situacao</label>
+            <select class="form-control" name="situacao" [(ngModel)]="licitacao.situacao" id="field_situacao" >
+                <option value="SITUACAO">SITUACAO</option>
+                <option value="SITU2">SITU2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dataHoraPublicacao">Data Hora Publicacao</label>
+            <div class="d-flex">
+                <input id="field_dataHoraPublicacao" type="datetime-local" class="form-control" name="dataHoraPublicacao" [(ngModel)]="licitacao.dataHoraPublicacao"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_ata">Ata</label>
+            <input type="text" class="form-control" name="ata" id="field_ata"
+                [(ngModel)]="licitacao.ata" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_entidade">Entidade</label>
+            <select class="form-control" id="field_entidade" name="entidade" [(ngModel)]="licitacao.entidade" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="entidadeOption.id === licitacao.entidade?.id ? licitacao.entidade : entidadeOption" *ngFor="let entidadeOption of entidades; trackBy: trackEntidadeById">{{entidadeOption.nome}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_unidadeOrganizacional">Unidade Organizacional</label>
+            <select class="form-control" id="field_unidadeOrganizacional" name="unidadeOrganizacional" [(ngModel)]="licitacao.unidadeOrganizacional" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="unidadeOrganizacionalOption.id === licitacao.unidadeOrganizacional?.id ? licitacao.unidadeOrganizacional : unidadeOrganizacionalOption" *ngFor="let unidadeOrganizacionalOption of unidadeorganizacionals; trackBy: trackUnidadeOrganizacionalById">{{unidadeOrganizacionalOption.nome}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_pregoeiro">Pregoeiro</label>
+            <select class="form-control" id="field_pregoeiro" name="pregoeiro" [(ngModel)]="licitacao.pregoeiro" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="operadorOption.id === licitacao.pregoeiro?.id ? licitacao.pregoeiro : operadorOption" *ngFor="let operadorOption of operadors; trackBy: trackOperadorById">{{operadorOption.nome}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

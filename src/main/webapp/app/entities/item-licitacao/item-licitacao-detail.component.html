@@ -1,0 +1,46 @@
+
+<div *ngIf="itemLicitacao">
+    <h2><span>Item Licitacao</span> {{itemLicitacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Numero</span></dt>
+        <dd>
+            <span>{{itemLicitacao.numero}}</span>
+        </dd>
+        <dt><span>Quantidade</span></dt>
+        <dd>
+            <span>{{itemLicitacao.quantidade}}</span>
+        </dd>
+        <dt><span>Descricao</span></dt>
+        <dd>
+            <span>{{itemLicitacao.descricao}}</span>
+        </dd>
+        <dt><span>Lote</span></dt>
+        <dd>
+            <div *ngIf="itemLicitacao.lote">
+                <a [routerLink]="['/lote-licitacao', itemLicitacao.lote?.id]">{{itemLicitacao.lote?.numero}}</a>
+            </div>
+        </dd>
+        <dt><span>Produto</span></dt>
+        <dd>
+            <div *ngIf="itemLicitacao.produto">
+                <a [routerLink]="['/produto', itemLicitacao.produto?.id]">{{itemLicitacao.produto?.nome}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item-licitacao/'+ itemLicitacao.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

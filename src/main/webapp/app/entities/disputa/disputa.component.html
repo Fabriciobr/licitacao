@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Disputas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-disputa" [routerLink]="['/', { outlets: { popup: ['disputa-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Disputa
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="disputas">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Melhor Lance</span></th>
+            <th><span>Melhor Proposta</span></th>
+            <th><span>Variacao</span></th>
+            <th><span>Duracao</span></th>
+            <th><span>Lote Licitacao</span></th>
+            <th><span>Participantes</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let disputa of disputas ;trackBy: trackId">
+                <td><a [routerLink]="['../disputa', disputa.id ]">{{disputa.id}}</a></td>
+                <td>{{disputa.melhorLance}}</td>
+                <td>{{disputa.melhorProposta}}</td>
+                <td>{{disputa.variacao}}</td>
+                <td>{{disputa.duracao}}</td>
+                <td>
+                    <div *ngIf="disputa.loteLicitacao">
+                        <a [routerLink]="['../lote-licitacao', disputa.loteLicitacao?.id ]" >{{disputa.loteLicitacao?.numero}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let participantes of disputa.participantes; let last = last">
+                            <a class="form-control-static" [routerLink]="['../fornecedor', participantes?.id ]">{{participantes.nome}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../disputa', disputa.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'disputa/'+ disputa.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'disputa/'+ disputa.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
