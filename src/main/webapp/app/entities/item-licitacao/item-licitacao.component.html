@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Item Licitacaos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-item-licitacao" [routerLink]="['/', { outlets: { popup: ['item-licitacao-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Item Licitacao
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="itemLicitacaos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Numero</span></th>
+            <th><span>Quantidade</span></th>
+            <th><span>Descricao</span></th>
+            <th><span>Lote</span></th>
+            <th><span>Produto</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let itemLicitacao of itemLicitacaos ;trackBy: trackId">
+                <td><a [routerLink]="['../item-licitacao', itemLicitacao.id ]">{{itemLicitacao.id}}</a></td>
+                <td>{{itemLicitacao.numero}}</td>
+                <td>{{itemLicitacao.quantidade}}</td>
+                <td>{{itemLicitacao.descricao}}</td>
+                <td>
+                    <div *ngIf="itemLicitacao.lote">
+                        <a [routerLink]="['../lote-licitacao', itemLicitacao.lote?.id ]" >{{itemLicitacao.lote?.numero}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="itemLicitacao.produto">
+                        <a [routerLink]="['../produto', itemLicitacao.produto?.id ]" >{{itemLicitacao.produto?.nome}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../item-licitacao', itemLicitacao.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-licitacao/'+ itemLicitacao.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-licitacao/'+ itemLicitacao.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

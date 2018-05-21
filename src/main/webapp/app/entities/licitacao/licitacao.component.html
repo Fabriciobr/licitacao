@@ -1,0 +1,114 @@
+<div>
+    <h2>
+        <span>Licitacaos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-licitacao" [routerLink]="['/', { outlets: { popup: ['licitacao-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Licitacao
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="licitacaos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Numero</span></th>
+            <th><span>Tipo Cadastro</span></th>
+            <th><span>Edital</span></th>
+            <th><span>Processo</span></th>
+            <th><span>Modalidade</span></th>
+            <th><span>Tipo Participacao Fornecedor</span></th>
+            <th><span>Forma Conducao</span></th>
+            <th><span>Tipo</span></th>
+            <th><span>Moeda</span></th>
+            <th><span>Prazo Impugnacao</span></th>
+            <th><span>Inicio Acolhimento Propostas</span></th>
+            <th><span>Data Hora Disputa</span></th>
+            <th><span>Abertura Propostas</span></th>
+            <th><span>Abrangencia Disputa</span></th>
+            <th><span>Tipo Moeda Proposta</span></th>
+            <th><span>Resumo</span></th>
+            <th><span>Aliquota Diferenciada</span></th>
+            <th><span>Situacao</span></th>
+            <th><span>Data Hora Publicacao</span></th>
+            <th><span>Ata</span></th>
+            <th><span>Entidade</span></th>
+            <th><span>Unidade Organizacional</span></th>
+            <th><span>Pregoeiro</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let licitacao of licitacaos ;trackBy: trackId">
+                <td><a [routerLink]="['../licitacao', licitacao.id ]">{{licitacao.id}}</a></td>
+                <td>{{licitacao.numero}}</td>
+                <td>{{licitacao.tipoCadastro}}</td>
+                <td>{{licitacao.edital}}</td>
+                <td>{{licitacao.processo}}</td>
+                <td>{{licitacao.modalidade}}</td>
+                <td>{{licitacao.tipoParticipacaoFornecedor}}</td>
+                <td>{{licitacao.formaConducao}}</td>
+                <td>{{licitacao.tipo}}</td>
+                <td>{{licitacao.moeda}}</td>
+                <td>{{licitacao.prazoImpugnacao}}</td>
+                <td>{{licitacao.inicioAcolhimentoPropostas | date:'medium'}}</td>
+                <td>{{licitacao.dataHoraDisputa | date:'medium'}}</td>
+                <td>{{licitacao.aberturaPropostas | date:'medium'}}</td>
+                <td>{{licitacao.abrangenciaDisputa}}</td>
+                <td>{{licitacao.tipoMoedaProposta}}</td>
+                <td>{{licitacao.resumo}}</td>
+                <td>{{licitacao.aliquotaDiferenciada}}</td>
+                <td>{{licitacao.situacao}}</td>
+                <td>{{licitacao.dataHoraPublicacao | date:'medium'}}</td>
+                <td>{{licitacao.ata}}</td>
+                <td>
+                    <div *ngIf="licitacao.entidade">
+                        <a [routerLink]="['../entidade', licitacao.entidade?.id ]" >{{licitacao.entidade?.nome}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="licitacao.unidadeOrganizacional">
+                        <a [routerLink]="['../unidade-organizacional', licitacao.unidadeOrganizacional?.id ]" >{{licitacao.unidadeOrganizacional?.nome}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="licitacao.pregoeiro">
+                        <a [routerLink]="['../operador', licitacao.pregoeiro?.id ]" >{{licitacao.pregoeiro?.nome}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../licitacao', licitacao.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'licitacao/'+ licitacao.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'licitacao/'+ licitacao.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

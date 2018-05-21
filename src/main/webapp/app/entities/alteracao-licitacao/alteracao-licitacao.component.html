@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span>Alteracao Licitacaos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-alteracao-licitacao" [routerLink]="['/', { outlets: { popup: ['alteracao-licitacao-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Alteracao Licitacao
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="alteracaoLicitacaos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Situacao</span></th>
+            <th><span>Motivo</span></th>
+            <th><span>Licitacao</span></th>
+            <th><span>Operador</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let alteracaoLicitacao of alteracaoLicitacaos ;trackBy: trackId">
+                <td><a [routerLink]="['../alteracao-licitacao', alteracaoLicitacao.id ]">{{alteracaoLicitacao.id}}</a></td>
+                <td>{{alteracaoLicitacao.situacao}}</td>
+                <td>{{alteracaoLicitacao.motivo}}</td>
+                <td>
+                    <div *ngIf="alteracaoLicitacao.licitacao">
+                        <a [routerLink]="['../licitacao', alteracaoLicitacao.licitacao?.id ]" >{{alteracaoLicitacao.licitacao?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="alteracaoLicitacao.operador">
+                        <a [routerLink]="['../operador', alteracaoLicitacao.operador?.id ]" >{{alteracaoLicitacao.operador?.nome}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../alteracao-licitacao', alteracaoLicitacao.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'alteracao-licitacao/'+ alteracaoLicitacao.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'alteracao-licitacao/'+ alteracaoLicitacao.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

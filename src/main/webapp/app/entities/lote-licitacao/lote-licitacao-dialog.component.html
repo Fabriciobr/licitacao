@@ -1,0 +1,129 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLoteLicitacaoLabel">Create or edit a Lote Licitacao</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!loteLicitacao.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="loteLicitacao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_numero">Numero</label>
+            <input type="text" class="form-control" name="numero" id="field_numero"
+                [(ngModel)]="loteLicitacao.numero" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipoDisputa">Tipo Disputa</label>
+            <select class="form-control" name="tipoDisputa" [(ngModel)]="loteLicitacao.tipoDisputa" id="field_tipoDisputa" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_criterioSelecao">Criterio Selecao</label>
+            <select class="form-control" name="criterioSelecao" [(ngModel)]="loteLicitacao.criterioSelecao" id="field_criterioSelecao" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tratamentoDiferenciadoMe">Tratamento Diferenciado Me</label>
+            <input type="checkbox" class="form-control" name="tratamentoDiferenciadoMe" id="field_tratamentoDiferenciadoMe"
+                [(ngModel)]="loteLicitacao.tratamentoDiferenciadoMe" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_exclusividadeMe">Exclusividade Me</label>
+            <input type="checkbox" class="form-control" name="exclusividadeMe" id="field_exclusividadeMe"
+                [(ngModel)]="loteLicitacao.exclusividadeMe" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tempoMinimoEntreLances">Tempo Minimo Entre Lances</label>
+            <input type="number" class="form-control" name="tempoMinimoEntreLances" id="field_tempoMinimoEntreLances"
+                [(ngModel)]="loteLicitacao.tempoMinimoEntreLances" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tempoMinimoMelhorLance">Tempo Minimo Melhor Lance</label>
+            <input type="number" class="form-control" name="tempoMinimoMelhorLance" id="field_tempoMinimoMelhorLance"
+                [(ngModel)]="loteLicitacao.tempoMinimoMelhorLance" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_valorMinimoEntreLances">Valor Minimo Entre Lances</label>
+            <input type="number" class="form-control" name="valorMinimoEntreLances" id="field_valorMinimoEntreLances"
+                [(ngModel)]="loteLicitacao.valorMinimoEntreLances" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_valorMinimoMelhorLance">Valor Minimo Melhor Lance</label>
+            <input type="number" class="form-control" name="valorMinimoMelhorLance" id="field_valorMinimoMelhorLance"
+                [(ngModel)]="loteLicitacao.valorMinimoMelhorLance" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_descricao">Descricao</label>
+            <input type="text" class="form-control" name="descricao" id="field_descricao"
+                [(ngModel)]="loteLicitacao.descricao" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_situacao">Situacao</label>
+            <select class="form-control" name="situacao" [(ngModel)]="loteLicitacao.situacao" id="field_situacao" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_valorSelecionado">Valor Selecionado</label>
+            <input type="number" class="form-control" name="valorSelecionado" id="field_valorSelecionado"
+                [(ngModel)]="loteLicitacao.valorSelecionado" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_valorEstimado">Valor Estimado</label>
+            <input type="number" class="form-control" name="valorEstimado" id="field_valorEstimado"
+                [(ngModel)]="loteLicitacao.valorEstimado" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_valorAdjudcado">Valor Adjudcado</label>
+            <input type="number" class="form-control" name="valorAdjudcado" id="field_valorAdjudcado"
+                [(ngModel)]="loteLicitacao.valorAdjudcado" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_situacaoFornecedor">Situacao Fornecedor</label>
+            <select class="form-control" name="situacaoFornecedor" [(ngModel)]="loteLicitacao.situacaoFornecedor" id="field_situacaoFornecedor" >
+                <option value="TIPO1">TIPO1</option>
+                <option value="TIPO2">TIPO2</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_licitacao">Licitacao</label>
+            <select class="form-control" id="field_licitacao" name="licitacao" [(ngModel)]="loteLicitacao.licitacao" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="licitacaoOption.id === loteLicitacao.licitacao?.id ? loteLicitacao.licitacao : licitacaoOption" *ngFor="let licitacaoOption of licitacaos; trackBy: trackLicitacaoById">{{licitacaoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fornecedorSelecionado">Fornecedor Selecionado</label>
+            <select class="form-control" id="field_fornecedorSelecionado" name="fornecedorSelecionado" [(ngModel)]="loteLicitacao.fornecedorSelecionado" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="fornecedorOption.id === loteLicitacao.fornecedorSelecionado?.id ? loteLicitacao.fornecedorSelecionado : fornecedorOption" *ngFor="let fornecedorOption of fornecedors; trackBy: trackFornecedorById">{{fornecedorOption.nome}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tempoRandomico">Tempo Randomico</label>
+            <select class="form-control" id="field_tempoRandomico" name="tempoRandomico" [(ngModel)]="loteLicitacao.tempoRandomico" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tempoRandomicoOption.id === loteLicitacao.tempoRandomico?.id ? loteLicitacao.tempoRandomico : tempoRandomicoOption" *ngFor="let tempoRandomicoOption of temporandomicos; trackBy: trackTempoRandomicoById">{{tempoRandomicoOption.nome}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

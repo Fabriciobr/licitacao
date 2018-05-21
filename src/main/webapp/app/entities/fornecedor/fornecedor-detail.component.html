@@ -1,0 +1,32 @@
+
+<div *ngIf="fornecedor">
+    <h2><span>Fornecedor</span> {{fornecedor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nome</span></dt>
+        <dd>
+            <span>{{fornecedor.nome}}</span>
+        </dd>
+        <dt><span>Licitacao</span></dt>
+        <dd>
+            <div *ngIf="fornecedor.licitacao">
+                <a [routerLink]="['/licitacao', fornecedor.licitacao?.id]">{{fornecedor.licitacao?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'fornecedor/'+ fornecedor.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

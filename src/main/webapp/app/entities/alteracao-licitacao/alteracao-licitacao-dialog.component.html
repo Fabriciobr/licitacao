@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAlteracaoLicitacaoLabel">Create or edit a Alteracao Licitacao</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!alteracaoLicitacao.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="alteracaoLicitacao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_situacao">Situacao</label>
+            <select class="form-control" name="situacao" [(ngModel)]="alteracaoLicitacao.situacao" id="field_situacao"  required>
+                <option value="SITUACAO">SITUACAO</option>
+                <option value="SITU2">SITU2</option>
+            </select>
+            <div [hidden]="!(editForm.controls.situacao?.dirty && editForm.controls.situacao?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.situacao?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_motivo">Motivo</label>
+            <input type="text" class="form-control" name="motivo" id="field_motivo"
+                [(ngModel)]="alteracaoLicitacao.motivo" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_licitacao">Licitacao</label>
+            <select class="form-control" id="field_licitacao" name="licitacao" [(ngModel)]="alteracaoLicitacao.licitacao" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="licitacaoOption.id === alteracaoLicitacao.licitacao?.id ? alteracaoLicitacao.licitacao : licitacaoOption" *ngFor="let licitacaoOption of licitacaos; trackBy: trackLicitacaoById">{{licitacaoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_operador">Operador</label>
+            <select class="form-control" id="field_operador" name="operador" [(ngModel)]="alteracaoLicitacao.operador" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="operadorOption.id === alteracaoLicitacao.operador?.id ? alteracaoLicitacao.operador : operadorOption" *ngFor="let operadorOption of operadors; trackBy: trackOperadorById">{{operadorOption.nome}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

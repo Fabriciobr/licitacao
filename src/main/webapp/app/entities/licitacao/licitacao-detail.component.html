@@ -1,0 +1,120 @@
+
+<div *ngIf="licitacao">
+    <h2><span>Licitacao</span> {{licitacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Numero</span></dt>
+        <dd>
+            <span>{{licitacao.numero}}</span>
+        </dd>
+        <dt><span>Tipo Cadastro</span></dt>
+        <dd>
+            <span>{{licitacao.tipoCadastro}}</span>
+        </dd>
+        <dt><span>Edital</span></dt>
+        <dd>
+            <span>{{licitacao.edital}}</span>
+        </dd>
+        <dt><span>Processo</span></dt>
+        <dd>
+            <span>{{licitacao.processo}}</span>
+        </dd>
+        <dt><span>Modalidade</span></dt>
+        <dd>
+            <span>{{licitacao.modalidade}}</span>
+        </dd>
+        <dt><span>Tipo Participacao Fornecedor</span></dt>
+        <dd>
+            <span>{{licitacao.tipoParticipacaoFornecedor}}</span>
+        </dd>
+        <dt><span>Forma Conducao</span></dt>
+        <dd>
+            <span>{{licitacao.formaConducao}}</span>
+        </dd>
+        <dt><span>Tipo</span></dt>
+        <dd>
+            <span>{{licitacao.tipo}}</span>
+        </dd>
+        <dt><span>Moeda</span></dt>
+        <dd>
+            <span>{{licitacao.moeda}}</span>
+        </dd>
+        <dt><span>Prazo Impugnacao</span></dt>
+        <dd>
+            <span>{{licitacao.prazoImpugnacao}}</span>
+        </dd>
+        <dt><span>Inicio Acolhimento Propostas</span></dt>
+        <dd>
+            <span>{{licitacao.inicioAcolhimentoPropostas | date:'medium'}}</span>
+        </dd>
+        <dt><span>Data Hora Disputa</span></dt>
+        <dd>
+            <span>{{licitacao.dataHoraDisputa | date:'medium'}}</span>
+        </dd>
+        <dt><span>Abertura Propostas</span></dt>
+        <dd>
+            <span>{{licitacao.aberturaPropostas | date:'medium'}}</span>
+        </dd>
+        <dt><span>Abrangencia Disputa</span></dt>
+        <dd>
+            <span>{{licitacao.abrangenciaDisputa}}</span>
+        </dd>
+        <dt><span>Tipo Moeda Proposta</span></dt>
+        <dd>
+            <span>{{licitacao.tipoMoedaProposta}}</span>
+        </dd>
+        <dt><span>Resumo</span></dt>
+        <dd>
+            <span>{{licitacao.resumo}}</span>
+        </dd>
+        <dt><span>Aliquota Diferenciada</span></dt>
+        <dd>
+            <span>{{licitacao.aliquotaDiferenciada}}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+            <span>{{licitacao.situacao}}</span>
+        </dd>
+        <dt><span>Data Hora Publicacao</span></dt>
+        <dd>
+            <span>{{licitacao.dataHoraPublicacao | date:'medium'}}</span>
+        </dd>
+        <dt><span>Ata</span></dt>
+        <dd>
+            <span>{{licitacao.ata}}</span>
+        </dd>
+        <dt><span>Entidade</span></dt>
+        <dd>
+            <div *ngIf="licitacao.entidade">
+                <a [routerLink]="['/entidade', licitacao.entidade?.id]">{{licitacao.entidade?.nome}}</a>
+            </div>
+        </dd>
+        <dt><span>Unidade Organizacional</span></dt>
+        <dd>
+            <div *ngIf="licitacao.unidadeOrganizacional">
+                <a [routerLink]="['/unidade-organizacional', licitacao.unidadeOrganizacional?.id]">{{licitacao.unidadeOrganizacional?.nome}}</a>
+            </div>
+        </dd>
+        <dt><span>Pregoeiro</span></dt>
+        <dd>
+            <div *ngIf="licitacao.pregoeiro">
+                <a [routerLink]="['/operador', licitacao.pregoeiro?.id]">{{licitacao.pregoeiro?.nome}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'licitacao/'+ licitacao.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Licitacao.
+    -->
+    <changeSet id="20180521112117-1" author="jhipster">
+        <createTable tableName="licitacao">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="numero" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_cadastro" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="edital" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="processo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="modalidade" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_participacao_fornecedor" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="forma_conducao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="moeda" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prazo_impugnacao" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="inicio_acolhimento_propostas" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="data_hora_disputa" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="abertura_propostas" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="abrangencia_disputa" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_moeda_proposta" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="resumo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="aliquota_diferenciada" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="situacao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="data_hora_publicacao" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ata" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="entidade_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="unidade_organizacional_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pregoeiro_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="licitacao" columnName="inicio_acolhimento_propostas" columnDataType="datetime"/>
+        <dropDefaultValue tableName="licitacao" columnName="data_hora_disputa" columnDataType="datetime"/>
+        <dropDefaultValue tableName="licitacao" columnName="abertura_propostas" columnDataType="datetime"/>
+        <dropDefaultValue tableName="licitacao" columnName="data_hora_publicacao" columnDataType="datetime"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

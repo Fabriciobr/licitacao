@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "loteLicitacao",
+            "otherEntityName": "loteLicitacao",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "participantes",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "nome",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "melhorLance",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "melhorProposta",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "variacao",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "duracao",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180521112114",
+    "entityTableName": "disputa",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

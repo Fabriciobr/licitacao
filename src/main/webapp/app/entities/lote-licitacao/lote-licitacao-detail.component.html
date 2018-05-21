@@ -1,0 +1,100 @@
+
+<div *ngIf="loteLicitacao">
+    <h2><span>Lote Licitacao</span> {{loteLicitacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Numero</span></dt>
+        <dd>
+            <span>{{loteLicitacao.numero}}</span>
+        </dd>
+        <dt><span>Tipo Disputa</span></dt>
+        <dd>
+            <span>{{loteLicitacao.tipoDisputa}}</span>
+        </dd>
+        <dt><span>Criterio Selecao</span></dt>
+        <dd>
+            <span>{{loteLicitacao.criterioSelecao}}</span>
+        </dd>
+        <dt><span>Tratamento Diferenciado Me</span></dt>
+        <dd>
+            <span>{{loteLicitacao.tratamentoDiferenciadoMe}}</span>
+        </dd>
+        <dt><span>Exclusividade Me</span></dt>
+        <dd>
+            <span>{{loteLicitacao.exclusividadeMe}}</span>
+        </dd>
+        <dt><span>Tempo Minimo Entre Lances</span></dt>
+        <dd>
+            <span>{{loteLicitacao.tempoMinimoEntreLances}}</span>
+        </dd>
+        <dt><span>Tempo Minimo Melhor Lance</span></dt>
+        <dd>
+            <span>{{loteLicitacao.tempoMinimoMelhorLance}}</span>
+        </dd>
+        <dt><span>Valor Minimo Entre Lances</span></dt>
+        <dd>
+            <span>{{loteLicitacao.valorMinimoEntreLances}}</span>
+        </dd>
+        <dt><span>Valor Minimo Melhor Lance</span></dt>
+        <dd>
+            <span>{{loteLicitacao.valorMinimoMelhorLance}}</span>
+        </dd>
+        <dt><span>Descricao</span></dt>
+        <dd>
+            <span>{{loteLicitacao.descricao}}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+            <span>{{loteLicitacao.situacao}}</span>
+        </dd>
+        <dt><span>Valor Selecionado</span></dt>
+        <dd>
+            <span>{{loteLicitacao.valorSelecionado}}</span>
+        </dd>
+        <dt><span>Valor Estimado</span></dt>
+        <dd>
+            <span>{{loteLicitacao.valorEstimado}}</span>
+        </dd>
+        <dt><span>Valor Adjudcado</span></dt>
+        <dd>
+            <span>{{loteLicitacao.valorAdjudcado}}</span>
+        </dd>
+        <dt><span>Situacao Fornecedor</span></dt>
+        <dd>
+            <span>{{loteLicitacao.situacaoFornecedor}}</span>
+        </dd>
+        <dt><span>Licitacao</span></dt>
+        <dd>
+            <div *ngIf="loteLicitacao.licitacao">
+                <a [routerLink]="['/licitacao', loteLicitacao.licitacao?.id]">{{loteLicitacao.licitacao?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Fornecedor Selecionado</span></dt>
+        <dd>
+            <div *ngIf="loteLicitacao.fornecedorSelecionado">
+                <a [routerLink]="['/fornecedor', loteLicitacao.fornecedorSelecionado?.id]">{{loteLicitacao.fornecedorSelecionado?.nome}}</a>
+            </div>
+        </dd>
+        <dt><span>Tempo Randomico</span></dt>
+        <dd>
+            <div *ngIf="loteLicitacao.tempoRandomico">
+                <a [routerLink]="['/tempo-randomico', loteLicitacao.tempoRandomico?.id]">{{loteLicitacao.tempoRandomico?.nome}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'lote-licitacao/'+ loteLicitacao.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
