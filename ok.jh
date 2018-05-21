@@ -1,0 +1,225 @@
+
+
+entity Proposta {
+	//fornecedor Fornecedor
+    valor Double
+    dataHora Instant
+    situacao SituacaoLicitacao
+    //item ItemLicitacao
+}
+
+enum SituacaoLicitacao {
+	SITUACAO,SITU2
+}
+
+enum TipoDisputa {
+	TIPO1,TIPO2
+}
+
+enum CriterioSelecao {
+	TIPO1,TIPO2
+}
+
+enum SituacaoFornecedor {
+	TIPO1,TIPO2
+}
+enum SituacaoLote {
+	TIPO1,TIPO2
+}
+enum TipoCadastro {
+	AQUISICAO,SIMULACAO
+}
+enum ModalidadeLicitacao {
+	TIPO1,TIPO2
+}
+enum TipoParticipacaoFornecedor {
+	TIPO1,TIPO2
+}
+enum FormaConducao {
+	TIPO1,TIPO2
+}
+enum TipoLicitacao {
+	TIPO1,TIPO2
+}
+enum AbrangenciaDisputa {
+	TIPO1,TIPO2
+}
+enum Moeda {
+	REAL,DOLAR,EURO
+}
+enum TipoMoedaProposta {
+	MOEDA_DA_PROPOSTA,MOEDA_DO_PAIS_DO_FORNECEDOR
+}
+enum TipoAliquotaDiferenciada {
+	TIPO1,TIPO2
+}
+entity TempoRandomico {
+	nome String
+	tempoMinimo Integer
+    tempoMaximo Integer
+}
+
+entity Operador {
+	nome String
+}
+
+entity Fornecedor {
+	nome String
+}
+
+entity Disputa {
+    //lote LoteLicitacao
+    melhorLance Double
+    melhorProposta Double
+    variacao Double
+    duracao Integer
+    //participantes List<FOrnecedor>
+}
+
+entity Produto {
+	nome String
+}
+entity UnidadeOrganizacional {
+	nome String
+}
+entity Licitacao {
+	numero String
+    //cliente Entidade
+    //UnidadeOrganizacional
+    tipoCadastro TipoCadastro
+    edital String
+    processo String
+    modalidade ModalidadeLicitacao
+    tipoParticipacaoFornecedor TipoParticipacaoFornecedor
+    formaConducao FormaConducao
+    tipo TipoLicitacao
+    moeda Moeda
+    prazoImpugnacao Integer
+    inicioAcolhimentoPropostas Instant
+    dataHoraDisputa Instant
+    aberturaPropostas Instant
+    abrangenciaDisputa AbrangenciaDisputa
+    tipoMoedaProposta TipoMoedaProposta
+    resumo String
+    aliquotaDiferenciada TipoAliquotaDiferenciada
+    //lotes
+    situacao SituacaoLicitacao
+    dataHoraPublicacao Instant
+    //pregoeiro Operador
+    //documentos lis<ANexo>
+    //alteracoes List<AlteracaoLicitacao>
+    //interessados list<Fornecedor>
+    //mensagens Lista<MensagemLicitacao>
+    ata String
+}
+
+entity Anexo {
+	//produto Produto
+    nome String
+}
+entity Entidade {
+	//produto Produto
+    nome String
+}
+entity UnidadeOrganizacional {
+	//produto Produto
+    nome String
+}
+
+
+entity LoteLicitacao {
+	numero String
+	tipoDisputa TipoDisputa
+    criterioSelecao CriterioSelecao
+    tratamentoDiferenciadoMe Boolean
+    exclusividadeMe Boolean
+    tempoMinimoEntreLances Integer
+    tempoMinimoMelhorLance Integer
+    valorMinimoEntreLances Double
+    valorMinimoMelhorLance Double
+    descricao String
+    situacao SituacaoLote
+    //tempoRandomico
+    //Itens list
+    //fonecedorSelecionado
+    valorSelecionado Double
+    valorEstimado Double
+    valorAdjudcado Double
+    //propostasFechadas list<propostas>
+    situacaoFornecedor SituacaoFornecedor
+    
+}
+entity ItemLicitacao {
+	//produto Produto
+    numero String
+	quantidade Integer
+    descricao String
+}
+
+entity MensagemLicitacao {
+	//operador Operador
+	nome String
+    dataHora Instant
+    mensagem String
+}
+
+entity AlteracaoLicitacao {
+	//operador Operador required
+    situacao SituacaoLicitacao required
+    motivo String
+}
+relationship ManyToOne {
+   Licitacao{entidade(nome)} to Entidade
+}
+relationship ManyToOne {
+   Licitacao{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+relationship OneToMany {
+   Licitacao{lotes(numero)} to LoteLicitacao
+}
+relationship ManyToOne {
+   Licitacao{pregoeiro(nome)} to Operador
+}
+relationship OneToMany {
+   Licitacao{documentos(nome)} to Anexo
+}
+relationship OneToMany {
+   Licitacao{alteracoes(nome)} to AlteracaoLicitacao
+}
+relationship OneToMany {
+   Licitacao{interessados(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   LoteLicitacao{fornecedorSelecionado(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   MensagemLicitacao{licitacao(numero)} to Licitacao{mensagens(nome)}
+}
+relationship ManyToOne {
+   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
+}
+relationship ManyToOne {
+   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
+}
+relationship ManyToMany {
+   Disputa{participantes(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   LoteLicitacao{tempoRandomico(nome)} to TempoRandomico
+}
+relationship ManyToOne {
+   Disputa{LoteLicitacao(numero)} to LoteLicitacao
+}
+relationship ManyToOne {
+   ItemLicitacao{Produto(nome)} to Produto
+}
+relationship ManyToOne {
+   AlteracaoLicitacao{Operador(nome)} to Operador
+}
+relationship ManyToOne {
+   Proposta{Fornecedor(nome)} to Fornecedor
+}
+
+relationship ManyToOne {
+   Proposta{ItemLicitacao(nome)} to ItemLicitacao
+}
