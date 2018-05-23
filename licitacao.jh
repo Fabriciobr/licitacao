@@ -1,97 +1,386 @@
+
+
+entity Proposta {
+	//fornecedor Fornecedor
+    valor Double
+    dataHora Instant
+    situacao SituacaoLicitacao
+    //item ItemLicitacao
+}
+
+enum SituacaoLicitacao {
+	SITUACAO,SITU2
+}
+
+enum TipoDisputa {
+	TIPO1,TIPO2
+}
+
+enum CriterioSelecao {
+	TIPO1,TIPO2
+}
+
+enum SituacaoFornecedor {
+	TIPO1,TIPO2
+}
+enum SituacaoLote {
+	TIPO1,TIPO2
+}
+enum TipoCadastro {
+	AQUISICAO,SIMULACAO
+}
+enum ModalidadeLicitacao {
+	TIPO1,TIPO2
+}
+enum TipoParticipacaoFornecedor {
+	TIPO1,TIPO2
+}
+enum FormaConducao {
+	TIPO1,TIPO2
+}
+enum TipoLicitacao {
+	TIPO1,TIPO2
+}
+enum AbrangenciaDisputa {
+	TIPO1,TIPO2
+}
+enum Moeda {
+	REAL,DOLAR,EURO
+}
+enum TipoMoedaProposta {
+	MOEDA_DA_PROPOSTA,MOEDA_DO_PAIS_DO_FORNECEDOR
+}
+enum TipoAliquotaDiferenciada {
+	TIPO1,TIPO2
+}
+enum TipoMovimento {
+	MOVIMENTO,ABERTURA,AJUSTE,ESTORNO
+}
+entity TempoRandomico {
+	nome String
+	tempoMinimo Integer
+    tempoMaximo Integer
+}
+
 entity Operador {
 	nome String
 }
 
-entity AlteracaoLicitacao {
-	operador Operador required
-    situacao SituacaoLicitacao required
-}
-
-// an ignored comment
-/** not an ignored comment */
-entity SituacaoLicitacao {
-
-}
-
-entity MotivoAlteracao {
-	nome String required
-}
-
-/**
- * Task entity.
- * @author The JHipster team.
- */
-entity MensagemLicitacao {
-	operador Operador
-	hora DateTime
-    participante Fornecedor
-    mensagem String
-}
-
-entity ItemLicitacao {
-	produto Produto
-    Quantidade Integer
-    descricao String
+entity Fornecedor {
+	nome String
 }
 
 entity Disputa {
-	licitacao Licitacao
-    lote LoteLicitacao
+    //lote LoteLicitacao
     melhorLance Double
     melhorProposta Double
-    variacao Float
-    Duracao Float 
-    
+    variacao Double
+    duracao Integer
+    //participantes List<FOrnecedor>
 }
 
-/**
- * The Employee entity.
- */
-entity Fornecedor {
-	/**
-	* The firstname attribute.
-	*/
-	firstName String,
-	lastName String,
-	email String,
-	phoneNumber String,
-	hireDate Instant,
-	salary Long,
-	commissionPct Long
+entity ClasseProduto {
+    codigo String 
+	nome String
 }
 
+entity Produto {
+	//classe produto
+    //unidademedida
+	nome String
+}
+relationship ManyToOne {
+   Produto{unidadeMedida(nome)} to UnidadeMedida
+}
+entity Requisicao {
+    // unidadeorganizacional
+	numero Integer
+    dataHora Instant
+    status StatusRequisicao
+    obs String
+    //Items
+}
+enum StatusRequisicao {
+	TIPO1,TIPO2
+}
+entity RequisicaoItem {
+	item Integer
+    //produto
+    //Requisicao
+    quantidade Double
+    //UnidadeMedida
+    valorEstimado Double
+    valorTotal Double
 
-// defining multiple OneToMany relationships with comments
-relationship OneToMany {
-	Employee{job} to Job,
-	/**
-	* A relationship
-	*/
-	Department{employee} to
-	/**
-	* Another side of the same relationship
-	*/
-	Employee
+}
+entity UnidadeMedida {
+	codigo String
+    nome String
+}
+entity Saida {
+	// requerente operador
+    numero Integer
+    dataHora Instant
+    tipoMovimento TipoMovimento
+    //Departamento
+    obs String 
 }
 
 relationship ManyToOne {
-	Employee{manager} to Employee
+   Saida{requerente(nome)} to Operador
+}
+relationship ManyToOne {
+   Saida{departamento(nome)} to Departamento
+}
+entity SaidaItem {
+	item Integer
+    //produto
+    quantidade Double
+    //saida
+    valorEstimado Double
+    valorTotal Double
+
+}
+relationship ManyToOne {
+   SaidaItem{saida(nome)} to Saida{items}
+}
+relationship ManyToOne {
+   SaidaItem{produto(nome)} to Produto
+}
+entity Entrada {
+    numero Integer
+    dataHora Instant
+    tipoMovimento TipoMovimento
+    //Departamento
+    //Fornecedor
+    obs String 
+}
+relationship ManyToOne {
+   Entrada{fornecedor(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   Entrada{departamento(nome)} to Departamento
+}
+entity EntradaItem {
+	item Integer
+    //produto
+    quantidade Double
+    //entrada
+    valorUnitario Double
+    valorTotal Double
+
+}
+relationship ManyToOne {
+   EntradaItem{saida(nome)} to Entrada{items}
+}
+relationship ManyToOne {
+   EntradaItem{produto(nome)} to Produto
+}
+entity Departamento {
+    nome String
+    codigo String
+    //unidadegestora
+}
+relationship ManyToOne {
+   Departamento{unidadeOrganizacional(nome)} to UnidadeOrganizacional
 }
 
-// defining multiple oneToOne relationships
-relationship OneToOne {
-	JobHistory{job} to Job,
-	JobHistory{department} to Department,
-	JobHistory{employee} to Employee
+entity UnidadeOrganizacional {
+	codigo String
+	nome String
+    telefone String
+    email String 
+    cnpj String
+    //entidade
+}
+entity Entidade{
+	nome String 
+    codigo String
+}
+entity Licitacao {
+	numero String
+    //cliente Entidade
+    //UnidadeOrganizacional
+    tipoCadastro TipoCadastro
+    edital String
+    processo String
+    modalidade ModalidadeLicitacao
+    tipoParticipacaoFornecedor TipoParticipacaoFornecedor
+    formaConducao FormaConducao
+    tipo TipoLicitacao
+    moeda Moeda
+    prazoImpugnacao Integer
+    inicioAcolhimentoPropostas Instant
+    dataHoraDisputa Instant
+    aberturaPropostas Instant
+    abrangenciaDisputa AbrangenciaDisputa
+    tipoMoedaProposta TipoMoedaProposta
+    resumo String
+    aliquotaDiferenciada TipoAliquotaDiferenciada
+    //lotes
+    situacao SituacaoLicitacao
+    dataHoraPublicacao Instant
+    //pregoeiro Operador
+    //documentos lis<ANexo>
+    //alteracoes List<AlteracaoLicitacao>
+    //interessados list<Fornecedor>
+    //mensagens Lista<MensagemLicitacao>
+    ata String
 }
 
-// Set pagination options
-//paginate JobHistory, Employee with infinite-scroll
-//paginate Job with pagination
+entity Anexo {
+	//produto Produto
+    nome String
+}
+entity Entidade {
+	//produto Produto
+    nome String
+}
 
-//dto * with mapstruct
 
-// Set service options to all except few
-//service all with serviceImpl except Employee, Job
-// Set an angular suffix
-//angularSuffix * with mySuffix
+entity LoteLicitacao {
+	numero String
+	tipoDisputa TipoDisputa
+    criterioSelecao CriterioSelecao
+    tratamentoDiferenciadoMe Boolean
+    exclusividadeMe Boolean
+    tempoMinimoEntreLances Integer
+    tempoMinimoMelhorLance Integer
+    valorMinimoEntreLances Double
+    valorMinimoMelhorLance Double
+    descricao String
+    situacao SituacaoLote
+    //tempoRandomico
+    //Itens list
+    //fonecedorSelecionado
+    valorSelecionado Double
+    valorEstimado Double
+    valorAdjudcado Double
+    //propostasFechadas list<propostas>
+    situacaoFornecedor SituacaoFornecedor
+    
+}
+entity ItemLicitacao {
+	//produto Produto
+    numero String
+	quantidade Integer
+    descricao String
+}
+
+entity MensagemLicitacao {
+	//operador Operador
+	nome String
+    dataHora Instant
+    mensagem String
+}
+
+entity AlteracaoLicitacao {
+	//operador Operador required
+    situacao SituacaoLicitacao required
+    motivo String
+}
+relationship ManyToOne {
+   Licitacao{entidade(nome)} to Entidade
+}
+relationship ManyToOne {
+   Licitacao{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+relationship OneToMany {
+   Licitacao{lotes(numero)} to LoteLicitacao
+}
+relationship ManyToOne {
+   Licitacao{pregoeiro(nome)} to Operador
+}
+relationship ManyToOne {
+   RequisicaoItem{requisicao} to Requisicao{itens}
+}
+relationship ManyToOne {
+   RequisicaoItem{produto} to Produto
+}
+relationship ManyToOne {
+   RequisicaoItem{unidadeMedida} to UnidadeMedida
+}
+relationship ManyToOne {
+   Requisicao{classeProduto} to UnidadeOrganizacional
+}
+relationship ManyToOne {
+   Produto{classeProduto} to ClasseProduto
+}
+
+relationship OneToMany {
+   Licitacao{documentos(nome)} to Anexo
+}
+relationship OneToMany {
+   Licitacao{alteracoes(nome)} to AlteracaoLicitacao
+}
+relationship OneToMany {
+   Licitacao{interessados(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   LoteLicitacao{fornecedorSelecionado(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   MensagemLicitacao{licitacao(numero)} to Licitacao{mensagens(nome)}
+}
+relationship ManyToOne {
+   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
+}
+relationship ManyToOne {
+   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
+}
+relationship ManyToMany {
+   Disputa{participantes(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   LoteLicitacao{tempoRandomico(nome)} to TempoRandomico
+}
+relationship ManyToOne {
+   Disputa{LoteLicitacao(numero)} to LoteLicitacao
+}
+relationship ManyToOne {
+   ItemLicitacao{Produto(nome)} to Produto
+}
+relationship ManyToOne {
+   AlteracaoLicitacao{Operador(nome)} to Operador
+}
+relationship ManyToOne {
+   Proposta{Fornecedor(nome)} to Fornecedor
+}
+
+relationship ManyToOne {
+   Proposta{ItemLicitacao(nome)} to ItemLicitacao
+}
+
+entity Bem{
+	bemEstado BemEStado
+    //UnidadeOrganizacional
+    //BemLotacao
+    
+    obs String
+}
+entity BemLotacao{
+	data Date
+    local String
+    //departamento
+    //bem
+    //Responsavel Operador
+}
+enum BemEstado{
+	NOVO,BOM,RECUPERAVEL,INSERVIVEL
+}
+entity ManutencaoBem{
+	numero Integer
+    //bem
+    dataHora Instant
+    //fornecedor
+    garantia Instant
+    valor Double
+}
+entity OcorrenciaBem{
+	numero Integer
+    //unidadeOrganizacional
+    //bem
+    dataHora Instant
+    obs String
+}
+
