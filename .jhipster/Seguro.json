@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fornecedor",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bem",
+            "otherEntityName": "bem",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataContratacao",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataVigencia",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "valorSeguro",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorFranquia",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorCobertura",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "telefone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "apolice",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011401",
+    "entityTableName": "seguro",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

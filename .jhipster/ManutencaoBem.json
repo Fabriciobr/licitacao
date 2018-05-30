@@ -9,31 +9,31 @@
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "itemLicitacao",
-            "otherEntityName": "itemLicitacao",
-            "otherEntityField": "numero"
-        },
-        {
-            "relationshipType": "many-to-one"
+            "relationshipName": "bem",
+            "otherEntityName": "bem",
+            "otherEntityField": "nome"
         }
     ],
     "fields": [
         {
-            "fieldName": "valor",
-            "fieldType": "Double"
+            "fieldName": "numero",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "dataHora",
             "fieldType": "Instant"
         },
         {
-            "fieldName": "situacao",
-            "fieldType": "SituacaoLicitacao",
-            "fieldValues": "SITUACAO,SITU2"
+            "fieldName": "garantia",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
         }
     ],
-    "changelogDate": "20180521112110",
-    "entityTableName": "proposta",
+    "changelogDate": "20180530011358",
+    "entityTableName": "manutencao_bem",
     "dto": "no",
     "pagination": "no",
     "service": "no",

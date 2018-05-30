@@ -3,8 +3,8 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "lotes",
-            "otherEntityName": "loteLicitacao",
+            "relationshipName": "interessados",
+            "otherEntityName": "fornecedor",
             "otherEntityRelationshipName": "licitacao"
         },
         {
@@ -21,14 +21,20 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "interessados",
-            "otherEntityName": "fornecedor",
+            "relationshipName": "lotes",
+            "otherEntityName": "loteLicitacao",
             "otherEntityRelationshipName": "licitacao"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "entidade",
             "otherEntityName": "entidade",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "moeda",
+            "otherEntityName": "moeda",
             "otherEntityField": "nome"
         },
         {
@@ -71,7 +77,7 @@
         {
             "fieldName": "modalidade",
             "fieldType": "ModalidadeLicitacao",
-            "fieldValues": "TIPO1,TIPO2"
+            "fieldValues": "CARTA_CONVITE,CONCORRENCIA,CONCURSO,DISPENSA,INEXIGIBILIDADE,LEILAO,PREGAO_ELETRONICO,PREGAO_PRESENCIAL,REGISTRO_PRECO,TOMADA_DE_PRECO"
         },
         {
             "fieldName": "tipoParticipacaoFornecedor",
@@ -87,11 +93,6 @@
             "fieldName": "tipo",
             "fieldType": "TipoLicitacao",
             "fieldValues": "TIPO1,TIPO2"
-        },
-        {
-            "fieldName": "moeda",
-            "fieldType": "Moeda",
-            "fieldValues": "REAL,DOLAR,EURO"
         },
         {
             "fieldName": "prazoImpugnacao",

@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fontesDeRecurso",
+            "otherEntityName": "fonteRecurso",
+            "otherEntityRelationshipName": "grupo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011427",
+    "entityTableName": "fonte_recurso_grupo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

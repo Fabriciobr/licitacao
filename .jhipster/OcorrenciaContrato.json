@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contrato",
+            "otherEntityName": "contrato",
+            "otherEntityField": "numero"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipoOcorrencia",
+            "fieldType": "TipoOcorrenciaContrato",
+            "fieldValues": "REAJUSTAMENTO,PARALIZACAO"
+        },
+        {
+            "fieldName": "dataInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataFim",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "motivo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011422",
+    "entityTableName": "ocorrencia_contrato",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

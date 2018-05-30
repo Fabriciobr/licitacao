@@ -3,35 +3,35 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "entidade",
-            "otherEntityName": "entidade",
+            "relationshipName": "pasta",
+            "otherEntityName": "pasta",
             "otherEntityField": "nome"
         }
     ],
     "fields": [
         {
-            "fieldName": "codigo",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "nome",
             "fieldType": "String"
         },
         {
-            "fieldName": "telefone",
+            "fieldName": "dataDocumento",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataUpload",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "local",
             "fieldType": "String"
         },
         {
-            "fieldName": "email",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "cnpj",
+            "fieldName": "descricao",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180521112116",
-    "entityTableName": "unidade_organizacional",
+    "changelogDate": "20180530011418",
+    "entityTableName": "arquivo",
     "dto": "no",
     "pagination": "no",
     "service": "no",

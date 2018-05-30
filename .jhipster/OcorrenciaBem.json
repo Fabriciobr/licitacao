@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "unidadeOrganizacional",
+            "otherEntityName": "unidadeOrganizacional",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bem",
+            "otherEntityName": "bem",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tipoOcorrencia",
+            "fieldType": "TipoOcorrenciaBem",
+            "fieldValues": "INCORPORACAO,MOVIMENTACAO,TRANSFERENCIA,BAIXA"
+        },
+        {
+            "fieldName": "tipoBaixa",
+            "fieldType": "TipoBaixaBem",
+            "fieldValues": "NAO_SE_APLICA,IMPRESTAVEL,SUCATEADO,FURTO"
+        },
+        {
+            "fieldName": "dataHora",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011359",
+    "entityTableName": "ocorrencia_bem",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

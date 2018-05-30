@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contarto",
+            "otherEntityName": "contrato",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pagamentos",
+            "otherEntityName": "pagamentoContrato",
+            "otherEntityRelationshipName": "liquidacaoContrato"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180530011424",
+    "entityTableName": "liquidacao_contrato",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

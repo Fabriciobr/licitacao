@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "licitacao",
-            "otherEntityName": "licitacao",
             "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipName": "tempoRandomico",
+            "otherEntityName": "tempoRandomico",
+            "otherEntityField": "nome"
         },
         {
             "relationshipType": "many-to-one",
@@ -15,15 +15,21 @@
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "tempoRandomico",
-            "otherEntityName": "tempoRandomico",
-            "otherEntityField": "nome"
+            "relationshipName": "licitacao",
+            "otherEntityName": "licitacao",
+            "otherEntityField": "numero"
         },
         {
             "relationshipType": "one-to-many",
             "relationshipName": "itens",
             "otherEntityName": "itemLicitacao",
             "otherEntityRelationshipName": "lote"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "propostasFechadas",
+            "otherEntityName": "proposta",
+            "otherEntityRelationshipName": ""
         }
     ],
     "fields": [

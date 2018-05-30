@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "saida",
+            "otherEntityName": "entrada",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "produto",
+            "otherEntityName": "produto",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "item",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "quantidade",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorUnitario",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorTotal",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20180530011344",
+    "entityTableName": "entrada_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}
