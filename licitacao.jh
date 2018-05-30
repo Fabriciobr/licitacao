@@ -1,89 +1,109 @@
 
+///////////////////////   Common   /////////////////////////////
 
-entity Proposta {
-	//fornecedor Fornecedor
-    valor Double
-    dataHora Instant
-    situacao SituacaoLicitacao
-    //item ItemLicitacao
+entity Entidade {
+	codigo String
+    nome String
 }
-
-enum SituacaoLicitacao {
-	SITUACAO,SITU2
+entity Departamento {
+    nome String
+    codigo String
+    //UnidadeOrganizacional
 }
-
-enum TipoDisputa {
-	TIPO1,TIPO2
+relationship ManyToOne {
+   Departamento{unidadeOrganizacional(nome)} to UnidadeOrganizacional
 }
 
-enum CriterioSelecao {
-	TIPO1,TIPO2
-}
-
-enum SituacaoFornecedor {
-	TIPO1,TIPO2
-}
-enum SituacaoLote {
-	TIPO1,TIPO2
-}
-enum TipoCadastro {
-	AQUISICAO,SIMULACAO
-}
-enum ModalidadeLicitacao {
-	TIPO1,TIPO2
-}
-enum TipoParticipacaoFornecedor {
-	TIPO1,TIPO2
-}
-enum FormaConducao {
-	TIPO1,TIPO2
-}
-enum TipoLicitacao {
-	TIPO1,TIPO2
-}
-enum AbrangenciaDisputa {
-	TIPO1,TIPO2
-}
-enum Moeda {
-	REAL,DOLAR,EURO
-}
-enum TipoMoedaProposta {
-	MOEDA_DA_PROPOSTA,MOEDA_DO_PAIS_DO_FORNECEDOR
-}
-enum TipoAliquotaDiferenciada {
-	TIPO1,TIPO2
-}
-enum TipoMovimento {
-	MOVIMENTO,ABERTURA,AJUSTE,ESTORNO
-}
-entity TempoRandomico {
+entity UnidadeOrganizacional {
+	codigo String
 	nome String
-	tempoMinimo Integer
-    tempoMaximo Integer
+    telefone String
+    email String
+    cnpj String
+    //entidade
+}
+relationship ManyToOne {
+   UnidadeOrganizacional{entidade(nome)} to Entidade
+}
+entity Pessoa{
+	nome String
+    cnpjCpf String
+    //nacionalidade
+    dataCadastro Instant
+    //endereco 
+    telefone String
+    //contaBancariaSet***********
+    
+}
+relationship OneToMany {
+   Pessoa{nacionalidade(nome)} to Pais
+}
+relationship OneToOne {
+   Pessoa{endereco(logradouro)} to Endereco
+}
+entity Endereco{
+	cep String
+    logradouro String
+    numero String
+    bairro String
+    //cidade
+}
+relationship OneToMany {
+   Endereco{cidade(nome)} to Cidade
+}
+entity Cidade{
+	codigo String
+    nome String
+    sigla String
+    //uf
+}
+relationship OneToMany {
+   Cidade{uf(nome)} to Uf
+}entity Departamento {
+    nome String
+    codigo String
+    //unidadegestora
+}
+relationship ManyToOne {
+   Departamento{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+
+entity UnidadeOrganizacional {
+	codigo String
+	nome String
+    telefone String
+    email String
+    cnpj String
+    //entidade
+}
+entity Uf{
+	codigo String
+    nome String
+    sigla String
+    //pais
+}
+relationship OneToMany {
+   Uf{pais(nome)} to Pais
+}
+entity Pais{
+	codigo String
+    nome String
+    sigla String
 }
 
 entity Operador {
 	nome String
 }
-
-entity Fornecedor {
-	nome String
+entity Moeda {
+    nome String
+    codigo String
 }
 
-entity Disputa {
-    //lote LoteLicitacao
-    melhorLance Double
-    melhorProposta Double
-    variacao Double
-    duracao Integer
-    //participantes List<FOrnecedor>
-}
-
+///////////////////////   Materiais   /////////////////////////////
 entity ClasseProduto {
-    codigo String 
+    codigo String
 	nome String
 }
-
 entity Produto {
 	//classe produto
     //unidademedida
@@ -92,38 +112,20 @@ entity Produto {
 relationship ManyToOne {
    Produto{unidadeMedida(nome)} to UnidadeMedida
 }
-entity Requisicao {
-    // unidadeorganizacional
-	numero Integer
-    dataHora Instant
-    status StatusRequisicao
-    obs String
-    //Items
-}
-enum StatusRequisicao {
-	TIPO1,TIPO2
-}
-entity RequisicaoItem {
-	item Integer
-    //produto
-    //Requisicao
-    quantidade Double
-    //UnidadeMedida
-    valorEstimado Double
-    valorTotal Double
-
+relationship ManyToOne {
+   Produto{classe(nome)} to ClasseProduto
 }
 entity UnidadeMedida {
 	codigo String
     nome String
 }
 entity Saida {
-	// requerente operador
+	// requerente Operador
     numero Integer
     dataHora Instant
     tipoMovimento TipoMovimento
     //Departamento
-    obs String 
+    obs String
 }
 
 relationship ManyToOne {
@@ -153,7 +155,7 @@ entity Entrada {
     tipoMovimento TipoMovimento
     //Departamento
     //Fornecedor
-    obs String 
+    obs String
 }
 relationship ManyToOne {
    Entrada{fornecedor(nome)} to Fornecedor
@@ -176,27 +178,74 @@ relationship ManyToOne {
 relationship ManyToOne {
    EntradaItem{produto(nome)} to Produto
 }
-entity Departamento {
-    nome String
-    codigo String
-    //unidadegestora
+entity Requisicao {
+    // departamento
+	numero Integer
+    dataHora Instant
+    status StatusRequisicao
+    obs String
+    //Items
 }
 relationship ManyToOne {
-   Departamento{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+   Requisicao{departamento(nome)} to Departamento
 }
 
-entity UnidadeOrganizacional {
-	codigo String
+entity RequisicaoItem {
+	item Integer
+    //produto
+    //Requisicao
+    quantidade Double
+    //UnidadeMedida******
+    valorEstimado Double
+    valorTotal Double
+
+}
+relationship ManyToOne {
+   RequisicaoItem{produto(nome)} to Produto
+}
+relationship ManyToOne {
+   RequisicaoItem{requisicao(numero)} to Requisicao{itens(item)}
+}
+enum StatusRequisicao {
+	TIPO1,TIPO2
+}
+
+///////////////////////   Licitacao   ////////////////////////////////////////////////////////////////
+
+entity Proposta {
+	//fornecedor Fornecedor
+    valor Double
+    dataHora Instant
+    situacao SituacaoLicitacao
+    //item ItemLicitacao
+}
+relationship ManyToOne {
+   Proposta{fornecedor(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   Proposta{itemLicitacao(numero)} to ItemLicitacao
+}
+
+entity TempoRandomico {
 	nome String
-    telefone String
-    email String 
-    cnpj String
-    //entidade
+	tempoMinimo Integer
+    tempoMaximo Integer
 }
-entity Entidade{
-	nome String 
-    codigo String
+entity Disputa {
+    //lote LoteLicitacao
+    melhorLance Double
+    melhorProposta Double
+    variacao Double
+    duracao Integer
+    //participantes List<FOrnecedor>
 }
+relationship ManyToOne {
+   Disputa{LoteLicitacao(numero)} to LoteLicitacao
+}
+relationship ManyToMany {
+   Disputa{participantes(nome)} to Fornecedor
+}
+
 entity Licitacao {
 	numero String
     //cliente Entidade
@@ -208,7 +257,7 @@ entity Licitacao {
     tipoParticipacaoFornecedor TipoParticipacaoFornecedor
     formaConducao FormaConducao
     tipo TipoLicitacao
-    moeda Moeda
+    //moeda Moeda
     prazoImpugnacao Integer
     inicioAcolhimentoPropostas Instant
     dataHoraDisputa Instant
@@ -227,16 +276,30 @@ entity Licitacao {
     //mensagens Lista<MensagemLicitacao>
     ata String
 }
-
-entity Anexo {
-	//produto Produto
-    nome String
+relationship ManyToOne {
+   Licitacao{entidade(nome)} to Entidade
 }
-entity Entidade {
-	//produto Produto
-    nome String
+relationship ManyToOne {
+   Licitacao{moeda(nome)} to Moeda
 }
-
+relationship ManyToOne {
+   Licitacao{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+relationship OneToMany {
+   Licitacao{interessados(nome)} to Fornecedor
+}
+relationship OneToMany {
+   Licitacao{documentos(nome)} to Anexo
+}
+relationship OneToMany {
+   Licitacao{alteracoes(nome)} to AlteracaoLicitacao{licitacao(numero)}
+}
+relationship OneToMany {
+   Licitacao{lotes(numero)} to LoteLicitacao{licitacao(numero)}
+}
+relationship ManyToOne {
+   Licitacao{pregoeiro(nome)} to Operador
+}
 
 entity LoteLicitacao {
 	numero String
@@ -258,116 +321,175 @@ entity LoteLicitacao {
     valorAdjudcado Double
     //propostasFechadas list<propostas>
     situacaoFornecedor SituacaoFornecedor
-    
+
 }
+relationship ManyToOne {
+   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
+}
+relationship ManyToOne {
+   LoteLicitacao{tempoRandomico(nome)} to TempoRandomico
+}
+relationship ManyToOne {
+   LoteLicitacao{fornecedorSelecionado(nome)} to Fornecedor
+}
+relationship ManyToOne {
+   Proposta to LoteLicitacao{propostasFechadas(numero)}
+}
+
 entity ItemLicitacao {
 	//produto Produto
     numero String
 	quantidade Integer
     descricao String
 }
+relationship ManyToOne {
+   ItemLicitacao{produto(nome)} to Produto
+}
 
 entity MensagemLicitacao {
-	//operador Operador
-	nome String
+	//Operador Operador
     dataHora Instant
     mensagem String
+    //licitacao
+}
+relationship ManyToOne {
+   MensagemLicitacao{licitacao(numero)} to Licitacao{mensagens}
 }
 
 entity AlteracaoLicitacao {
-	//operador Operador required
+	//Operador Operador required
     situacao SituacaoLicitacao required
     motivo String
 }
 relationship ManyToOne {
-   Licitacao{entidade(nome)} to Entidade
-}
-relationship ManyToOne {
-   Licitacao{unidadeOrganizacional(nome)} to UnidadeOrganizacional
-}
-relationship OneToMany {
-   Licitacao{lotes(numero)} to LoteLicitacao
-}
-relationship ManyToOne {
-   Licitacao{pregoeiro(nome)} to Operador
-}
-relationship ManyToOne {
-   RequisicaoItem{requisicao} to Requisicao{itens}
-}
-relationship ManyToOne {
-   RequisicaoItem{produto} to Produto
-}
-relationship ManyToOne {
-   RequisicaoItem{unidadeMedida} to UnidadeMedida
-}
-relationship ManyToOne {
-   Requisicao{classeProduto} to UnidadeOrganizacional
-}
-relationship ManyToOne {
-   Produto{classeProduto} to ClasseProduto
-}
-
-relationship OneToMany {
-   Licitacao{documentos(nome)} to Anexo
-}
-relationship OneToMany {
-   Licitacao{alteracoes(nome)} to AlteracaoLicitacao
-}
-relationship OneToMany {
-   Licitacao{interessados(nome)} to Fornecedor
-}
-relationship ManyToOne {
-   LoteLicitacao{fornecedorSelecionado(nome)} to Fornecedor
-}
-relationship ManyToOne {
-   MensagemLicitacao{licitacao(numero)} to Licitacao{mensagens(nome)}
-}
-relationship ManyToOne {
-   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
-}
-relationship ManyToOne {
-   ItemLicitacao{lote(numero)} to LoteLicitacao{itens(numero)}
-}
-relationship ManyToMany {
-   Disputa{participantes(nome)} to Fornecedor
-}
-relationship ManyToOne {
-   LoteLicitacao{tempoRandomico(nome)} to TempoRandomico
-}
-relationship ManyToOne {
-   Disputa{LoteLicitacao(numero)} to LoteLicitacao
-}
-relationship ManyToOne {
-   ItemLicitacao{Produto(nome)} to Produto
-}
-relationship ManyToOne {
    AlteracaoLicitacao{Operador(nome)} to Operador
 }
-relationship ManyToOne {
-   Proposta{Fornecedor(nome)} to Fornecedor
+enum SituacaoLicitacao {
+	SITUACAO,SITU2
 }
 
-relationship ManyToOne {
-   Proposta{ItemLicitacao(nome)} to ItemLicitacao
+enum TipoDisputa {
+	TIPO1,TIPO2
 }
+
+enum CriterioSelecao {
+	TIPO1,TIPO2
+}
+
+enum SituacaoFornecedor {
+	TIPO1,TIPO2
+}
+enum SituacaoLote {
+	TIPO1,TIPO2
+}
+enum TipoCadastro {
+	AQUISICAO,SIMULACAO
+}
+enum ModalidadeLicitacao {
+    CARTA_CONVITE,
+    CONCORRENCIA,
+    CONCURSO,
+    DISPENSA,
+    INEXIGIBILIDADE,
+    LEILAO,
+    PREGAO_ELETRONICO,
+    PREGAO_PRESENCIAL,
+    REGISTRO_PRECO,
+    TOMADA_DE_PRECO
+}
+enum TipoParticipacaoFornecedor {
+	TIPO1,TIPO2
+}
+enum FormaConducao {
+	TIPO1,TIPO2
+}
+enum TipoLicitacao {
+	TIPO1,TIPO2
+}
+enum AbrangenciaDisputa {
+	TIPO1,TIPO2
+}
+enum TipoMoedaProposta {
+	MOEDA_DA_PROPOSTA,MOEDA_DO_PAIS_DO_FORNECEDOR
+}
+enum TipoAliquotaDiferenciada {
+	TIPO1,TIPO2
+}
+enum TipoMovimento {
+	MOVIMENTO,ABERTURA,AJUSTE,ESTORNO
+}
+
+/////////////////////////////////////////  Patrimonio  //////////////////////////////////////////////////////
 
 entity Bem{
-	bemEstado BemEStado
+	nome String
+    codigo String
+    valor Double
+    anoFabricacao Integer
+    dataAquisicao Instant
+    bemStatus BemStatus
+	bemEstado BemEstado
+    tipoAquisicao TipoAquisicao
     //UnidadeOrganizacional
-    //BemLotacao
-    
+    //lotacoes
+    //ClasseProduto
+    //ocorrencias
+    //manutensoes
+    //avaliacoes
+    //seguros
     obs String
 }
-entity BemLotacao{
-	data Date
+relationship ManyToOne {
+   Bem{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+relationship OneToMany {
+   Bem{lotacoes(local)} to LotacaoBem{bem(nome)}
+}
+relationship ManyToOne {
+   Bem{classeProduto(local)} to ClasseProduto
+}
+relationship OneToMany {
+   Bem{ocorrencias(numero)} to OcorrenciaBem{bem(nome)}
+}
+relationship OneToMany {
+   Bem{manutensoes(numero)} to ManutencaoBem{bem(nome)}
+}
+relationship OneToMany {
+   Bem{avaliacoes(numero)} to AvaliacaoBem{bem(nome)}
+}
+relationship OneToMany {
+   Bem{seguros(numero)} to Seguro{bem(nome)}
+}
+entity LotacaoBem{
+	data LocalDate
     local String
+    //lotacao
     //departamento
     //bem
     //Responsavel Operador
 }
-enum BemEstado{
-	NOVO,BOM,RECUPERAVEL,INSERVIVEL
+relationship ManyToOne {
+   LotacaoBem{lotacao(codigo)} to Lotacao{bensLotacao}
 }
+relationship ManyToOne {
+   LotacaoBem{departamento(nome)} to Departamento
+}
+relationship ManyToOne {
+   LotacaoBem{bem(nome)} to Bem
+}
+relationship ManyToOne {
+   LotacaoBem{responsavel(nome)} to Operador
+}
+
+entity Lotacao{
+	codigo String
+    nome String 
+    //departamento
+}
+relationship ManyToOne {
+   LotacaoBem{departamento(nome)} to Departamento
+}
+
 entity ManutencaoBem{
 	numero Integer
     //bem
@@ -376,11 +498,560 @@ entity ManutencaoBem{
     garantia Instant
     valor Double
 }
+relationship ManyToOne {
+   ManutencaoBem{fornecedor(nome)} to Fornecedor
+}
 entity OcorrenciaBem{
 	numero Integer
     //unidadeOrganizacional
     //bem
+    tipoOcorrencia TipoOcorrenciaBem
+    tipoBaixa TipoBaixaBem
     dataHora Instant
     obs String
 }
+relationship ManyToOne {
+   OcorrenciaBem{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+entity AvaliacaoBem{
+	numero Integer
+    tipoAvaliacao TipoAvaliacaoBem
+    tempoUtilizacao Integer
+    porcentagem Float
+    valor Double
+    //bem
+    dataHora Instant
+    obs String
+}
+entity Seguro{
+	codigo String
+    nome String 
+    //bem
+    dataContratacao Instant
+    dataVigencia Instant
+    valorSeguro Double
+    valorFranquia Double
+    valorCobertura Double
+    telefone String
+    apolice String
+    obs String
+    //fornecedor
+}
+relationship ManyToOne {
+   Seguro{fornecedor(nome)} to Fornecedor
+}
+enum TipoAvaliacaoBem {
+    DEPRECIACAO,
+    VALORIZACAO
+}
+enum TipoAquisicao {
+	COMPRA,
+    DOACAO,
+    CESSAO,
+    PERMUTA,
+    FABRICACAO,
+    LOCACAO,
+    DACAO,
+    TRANSFERENCIA
+}
+enum TipoOcorrenciaBem{
+	INCORPORACAO,
+    MOVIMENTACAO,
+    TRANSFERENCIA,
+    BAIXA
+}
+enum TipoBaixaBem{
+	NAO_SE_APLICA,
+    IMPRESTAVEL,
+    SUCATEADO,
+    FURTO
+}
+enum BemEstado{
+	NOVO,BOM,RECUPERAVEL,INSERVIVEL
+}
+enum BemStatus{
+	ATIVO,INATIVO,CEDIDO
+}
+///////////////////////////////////////////// Compras ///////////////////////////////////////q
+
+entity Fornecedor {
+    tipoAtividade TipoAtividade
+    //pessoa 
+    //certidoes@@
+}
+relationship ManyToOne {
+   Fornecedor{pessoa(nome)} to Pessoa
+}
+
+entity CertidaoFornecedor{
+	numero String 
+	tipo TipoCertidao
+    dataEmissao Instant
+    dataValidade Instant
+    //fornecedor
+}
+
+relationship ManyToOne {
+   CertidaoFornecedor{fornecedor} to Fornecedor{certidoes(numero)}
+}
+
+entity AvaliacaoFornecedor{
+	numero String
+    //AvlForTabelaItem
+    //fornecedor
+    nota Float
+}
+relationship ManyToOne {
+   AvaliacaoFornecedor{fornecedor} to Fornecedor
+}
+relationship ManyToOne {
+   AvaliacaoFornecedor{AvlForTabelaItem(nome)} to AvlForTabelaItem
+}
+
+entity AvlForTabelaItem {
+	codigo String
+    nome String
+    peso Float
+    //AvaliacaoFornecedorTabela
+}
+relationship ManyToOne {
+   AvlForTabelaItem{tabela(nome)} to AvlForTabelaItem{itens(nome)}
+}
+
+entity AvaliacaoFornecedorTabela {
+	codigo String
+    nome String
+    peso Float
+    //itens
+}
+
+entity SolicitacaoCompra{
+	numero String
+    valor Double
+    tipoCompra TipoCompra
+    status StatusSolicitacaoCompra
+    tipoOrcamento TipoOrcamentoCompra
+    dataSolicitacao Instant
+    justificativa String
+    prazo Integer
+    origem OrigemProduto
+    // autorizadoPor Operador
+    // solicitante operador
+    //departamento
+    //fornecedires Sugeridos
+}
+relationship ManyToOne {
+   SolicitacaoCompra{autorizadoPor(pessoa)} to Operador
+}
+relationship ManyToOne {
+   SolicitacaoCompra{solicitante(pessoa)} to Operador
+}
+relationship ManyToOne {
+   SolicitacaoCompra{departamento(nome)} to Departamento
+}
+relationship ManyToMany {
+   SolicitacaoCompra{fornecedoresSugeridos(pessoa)} to Fornecedor
+}
+entity SolicitacaoCompraItem{
+	item Integer //ordinal
+	valor Double
+    qtd Integer
+    valorUnitario Double
+    obs String
+    //produto
+    //solicitacaoCompra
+}
+relationship ManyToMany {
+   SolicitacaoCompraItem{solicitacaoCompra(numero)} to SolicitacaoCompra{itens(item)}
+}
+relationship ManyToMany {
+   SolicitacaoCompraItem{produto(nome)} to Produto
+}
+
+
+
+entity Orcamento{
+	numero Integer
+    prazoEntrega Instant
+    validade Integer
+    obs String
+    //solicitacaoDeCompra
+    //itens @@
+}
+relationship ManyToOne {
+   Orcamento{solicitacaoCompra(nome)} to SolicitacaoCompra
+}
+
+entity OrcamentoItem{
+	qtd Integer
+    //orcamento
+    //produto
+    //lista - OrcamentoFornecedorValor
+}
+relationship ManyToOne {
+   OrcamentoItem{orcamento(numero)} to Orcamento{itens(produto)}
+}
+relationship ManyToOne {
+   OrcamentoItem{produto(nome)} to Produto
+}
+relationship ManyToOne {
+   OrcamentoFornecedorValor to OrcamentoItem{valores}
+}
+
+entity OrcamentoFornecedorValor{
+	valor Double
+    //fornecedor
+}
+relationship ManyToOne {
+   OrcamentoFornecedorValor{fornecedor} to Fornecedor
+}
+entity ProcessoCompra{
+	numero String
+    data Instant
+    obs String
+    //fonteRecurso
+    //itens @@
+}
+relationship ManyToOne {
+   ProcessoCompra{fonteRecurso(nome)} to FonteRecurso
+}
+
+entity ProcessoCompraItem{
+	item Integer // ordinal
+    //status ****
+    valorAprovado Double
+    valor Double
+    qtdAprovada Integer
+    qtd Integer
+    //processoCompra
+    //SolicitacaoCompraItem
+}
+relationship ManyToOne {
+   ProcessoCompraItem{processoCompra(numero)} to ProcessoCompra{itens(item)}
+}
+
+
+enum TipoCertidao {
+    TRABALHISTA,
+    OUTRAS_CERTIDOES,
+    FAZENDA_MUNICIPAL,
+    INSS,
+    FGTS,
+    PIS_PASEP,
+    IPES,
+    FAZENDA_FEDERAL,
+    FAZENDA_ESTADUA
+}
+enum OrigemProduto {
+    NACIONAL,
+    ESTRANGEIRO,
+    IMPORTACAO_DIRETA
+}
+enum StatusSolicitacaoCompra {
+    AGUARDANDO_APROVACAO,
+    APROVADO,
+    NEGADO
+}
+enum TipoCompra {
+    NAO_APLICAVEL,
+    CONCURSO,
+    SUPRIMENTO_DE_FUNDOS,
+    POR_INTEGRACAO_DE_DADOS_CONTABEIS,
+    TOMADA_DE_PRECO,
+    CONVITE,
+    CONCORRENCIA,
+    DISPENSA__DE_LICITACAO,
+    PREGAO,
+    INEXIGIBILIDADE,
+    DIRETA
+}
+enum TipoOrcamentoCompra {
+    MAO_DE_OBRA_E_MATERIAL,
+    MATERIAL,
+    MAO_DE_OBRA,
+    SERVICO
+}
+enum TipoAtividade {
+    OUTROS,
+    INDUSTRIA_OU_COMERCIO,
+    PRESTACAO_DE_SERVICOS,
+    COMERCIO_E_SERVICOS,
+    ORGAO_PUBLICO
+}
+/////////////////////////////////////  Protocolo ///////////////////////////////////////////q
+entity Protocolo{
+	numero Integer
+	assunto String
+    status ProtocoloStatus
+    descricao String
+    dataAbertura Instant
+    dataEncerramento Instant
+    ano Integer
+    //departamentoOrigem
+    //unidadeOrganizacionalOrigem
+    //departamentoDestino
+    //unidadeOrganizacionalDestino
+    // tramites
+    //interessao Pessoa
+    //anexos
+}
+relationship ManyToOne {
+   Protocolo{departamentoOrigem(nome)} to Departamento
+}
+relationship ManyToOne {
+   Protocolo{departamentoDestino(nome)} to Departamento
+}
+relationship ManyToOne {
+   Protocolo{unidadeOrganizacionalOrigem(nome)} to UnidadeOrganizacional
+}
+relationship ManyToOne {
+   Protocolo{unidadeOrganizacionalDestino(nome)} to UnidadeOrganizacional
+}
+relationship ManyToOne {
+   Protocolo{interessado(nome)} to Pessoa
+}
+relationship OneToMany {
+   Protocolo{tramites(nome)} to TramiteProtocolo{protocolo(numero)}
+}
+relationship OneToMany {
+   Protocolo{anexos(nome)} to Anexo{protocolo(numero)}
+}
+entity Anexo {
+    numero Integer
+    descricao String
+    dados AnyBlob
+    //protocolo @@@
+    data Instant
+}
+entity TramiteProtocolo{
+	numero Integer //sequencial
+    data Instant
+    status TramiteProtocoloStatus
+    //operador
+    //protocolo @@ 
+    //departamentoOrigem
+    //unidadeOrganizacionalOrigem
+    //departamentoDestino
+    //unidadeOrganizacionalDestino
+}
+relationship ManyToOne {
+   TramiteProtocolo{operador(nome)} to Operador
+}
+relationship ManyToOne {
+   TramiteProtocolo{departamentoOrigem(nome)} to Departamento
+}
+relationship ManyToOne {
+   TramiteProtocolo{departamentoDestino(nome)} to Departamento
+}
+relationship ManyToOne {
+   TramiteProtocolo{unidadeOrganizacionalOrigem(nome)} to UnidadeOrganizacional
+}
+relationship ManyToOne {
+   TramiteProtocolo{unidadeOrganizacionalDestino(nome)} to UnidadeOrganizacional
+}
+enum ProtocoloStatus {
+    ABERTO,
+    EM_TRAMITE,
+    FINALIZADO,
+    CANCELADO,
+    REABERTO
+}
+
+enum TramiteProtocoloStatus {
+    ENVIADO,
+    RECEBIDO,
+    CANCELADO,
+    FINALIZADO,
+    REABERTO
+}
+/////////////////////////////////////  Ged  ///////////////////////////////////////////q
+entity Pasta{
+	nome String
+    //pasta mae
+    //pastas
+    //arquivos
+}
+relationship ManyToOne {
+   Pasta{pastaMae(nome)} to Pasta{pastas(nome)}
+}
+
+entity Arquivo{
+	nome String
+    dataDocumento Instant
+    dataUpload Instant
+    local String
+    descricao String
+    //pasta
+    //proprietario Pessoa
+}
+relationship ManyToOne {
+   Arquivo{pasta(nome)} to Pasta{arquivos(nome)}
+}
+
+/////////////////////////////////////  Contratos  ///////////////////////////////////////////
+
+entity Contrato{
+	numero Integer
+    valor Double 
+    tipo ContratoTipo
+    dataVigenciaInicio Instant
+    dataVigenciaFim Instant
+    dataPublicacao Instant
+    meioPublicacao MeioPublicacao
+    modalidadeLicitacao ModalidadeLicitacao
+    status StatusContrato
+    objeto String
+    processoAdm String
+    licitacao String
+    obs String
+    //pessoa
+    //unidadeOrganizacional
+    //moeda
+    //grupoContrato
+    //ocorrenciasontrato
+    //aditivos
+    //recisoes
+    //dotacoes
+    //empenhos <empenhoContrato>
+    //licitacao
+}
+relationship ManyToOne {
+   Contrato{pessoa(nome)} to Pessoa
+}
+relationship ManyToOne {
+   Contrato{unidadeOrganizacional(nome)} to UnidadeOrganizacional
+}
+relationship ManyToOne {
+   Contrato{moeda(nome)} to Moeda
+}
+relationship ManyToOne {
+   Contrato{grupo(nome)} to GrupoContrato{contratos(nome)}
+}
+relationship OneToMany {
+   Contrato{ocorrencias(tipoOcorrencia)} to OcorrenciaContrato{contrato(numero)}
+}
+relationship OneToMany {
+   Contrato{aditivos(numero)} to Contrato
+}
+relationship OneToMany {
+   Contrato{recisoes(numero)} to Contrato
+}
+relationship OneToMany {
+   Contrato{recisoes(numero)} to Contrato
+}
+relationship OneToMany {
+   Contrato{dotacoes} to DotacaoContrato
+}
+relationship OneToMany {
+   Contrato{empenhos(numero)} to EmpenhoContrato{contrato(numero)}
+}
+
+entity EmpenhoContrato{
+	numero Integer
+    valor Double
+    data Instant
+    //contrato @@
+}
+entity GrupoContrato{
+	nome String
+    descricao String
+}
+entity OcorrenciaContrato{
+	tipoOcorrencia TipoOcorrenciaContrato
+    dataInicio Instant
+    dataFim Instant
+    motivo String
+    obs String 
+}
+entity DotacaoContrato{
+	//fonteRecurso
+    valor Double
+}
+entity LiquidacaoContrato{
+	numero String
+    valor Double
+    data Instant
+    //contato @@
+    //pagamentos
+}
+relationship ManyToOne {
+   LiquidacaoContrato{contarto(numero)} to Contrato
+}
+relationship ManyToOne {
+   PagamentoContrato{liquidacaoContrato(numero)} to LiquidacaoContrato{pagamentos(numero)}
+}
+entity PagamentoContrato{
+	numero String
+    valor Double
+    data Instant
+    //liquidacao @@
+}
+
+
+enum TipoOcorrenciaContrato {
+    REAJUSTAMENTO,
+    PARALIZACAO
+}
+enum StatusContrato {
+    ATIVO,
+    ENCERRADO,
+    CANCELADO,
+    RESCINDIDO,
+    VIGENCIA_ENCERRADA,
+    SEM_SALDO
+    
+}
+ enum ContratoTipo {
+    CONTRATO,
+    ADITIVO_VALOR,
+    ADITIVO_PRAZO,
+    ADITIVO_VALOR_PRAZO,
+    RESCISAO,
+    TERMO_CESSAO,
+    TERMO_COMPROMISSO,
+    CREDENCIAMENTO,
+    REINTEGRACAO_DE_SALDO,
+    SUB_CONTRATACAO
+}
+enum MeioPublicacao {
+    NAO_SE_APLICA,
+    INTERNET,
+    DIARIO_OFICIAL,
+    DIARIO_PRIVATIVO,
+    JORNAL,
+    REVISTA,
+    IMPRESSO,
+    TELEVISAO,
+    RADIO,
+    OUTDOOR,
+    PAINEL_ELETRONICO,
+    SONORIZACAO_FIXA,
+    SONORIZACAO_MOVEL,
+    MURAL
+}
+
+/////////////////////////////////////////  Planejamento ////////////////////////////////////////////////
+
+entity FonteRecurso{
+	nome String
+    codigo String
+    ano Integer
+    //grupo
+}
+
+entity FonteRecursoGrupo{
+	nome String
+    codigo String
+}
+relationship OneToMany {
+   FonteRecursoGrupo{fontesDeRecurso(nome)} to FonteRecurso{grupo(nome)}
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
