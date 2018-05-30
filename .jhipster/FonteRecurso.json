@@ -3,14 +3,8 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "unidadeMedida",
-            "otherEntityName": "unidadeMedida",
-            "otherEntityField": "nome"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "classe",
-            "otherEntityName": "classeProduto",
+            "relationshipName": "grupo",
+            "otherEntityName": "fonteRecursoGrupo",
             "otherEntityField": "nome"
         }
     ],
@@ -18,10 +12,18 @@
         {
             "fieldName": "nome",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ano",
+            "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20180521112115",
-    "entityTableName": "produto",
+    "changelogDate": "20180530011426",
+    "entityTableName": "fonte_recurso",
     "dto": "no",
     "pagination": "no",
     "service": "no",

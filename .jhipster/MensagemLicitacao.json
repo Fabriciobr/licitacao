@@ -10,10 +10,6 @@
     ],
     "fields": [
         {
-            "fieldName": "nome",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "dataHora",
             "fieldType": "Instant"
         },

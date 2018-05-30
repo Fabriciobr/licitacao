@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fonteRecurso",
+            "otherEntityName": "fonteRecurso",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itens",
+            "otherEntityName": "processoCompraItem",
+            "otherEntityRelationshipName": "processoCompra"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011412",
+    "entityTableName": "processo_compra",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,84 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tramites",
+            "otherEntityName": "tramiteProtocolo",
+            "otherEntityRelationshipName": "protocolo"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "anexos",
+            "otherEntityName": "anexo",
+            "otherEntityRelationshipName": "protocolo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "departamentoOrigem",
+            "otherEntityName": "departamento",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "departamentoDestino",
+            "otherEntityName": "departamento",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "unidadeOrganizacionalOrigem",
+            "otherEntityName": "unidadeOrganizacional",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "unidadeOrganizacionalDestino",
+            "otherEntityName": "unidadeOrganizacional",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "interessado",
+            "otherEntityName": "pessoa",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "assunto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ProtocoloStatus",
+            "fieldValues": "ABERTO,EM_TRAMITE,FINALIZADO,CANCELADO,REABERTO"
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataAbertura",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataEncerramento",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "ano",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180530011414",
+    "entityTableName": "protocolo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,51 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "lotacao",
+            "otherEntityName": "lotacao",
+            "otherEntityField": "codigo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "departamento",
+            "otherEntityName": "departamento",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bem",
+            "otherEntityName": "bem",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "responsavel",
+            "otherEntityName": "operador",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bem",
+            "otherEntityName": "bem",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "local",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011356",
+    "entityTableName": "lotacao_bem",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

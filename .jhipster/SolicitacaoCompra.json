@@ -1,0 +1,86 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "autorizadoPor",
+            "otherEntityName": "operador",
+            "otherEntityField": "pessoa"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "solicitante",
+            "otherEntityName": "operador",
+            "otherEntityField": "pessoa"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "departamento",
+            "otherEntityName": "departamento",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "fornecedoresSugeridos",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "pessoa",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "itens",
+            "otherEntityName": "solicitacaoCompraItem",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "solicitacaoCompra"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tipoCompra",
+            "fieldType": "TipoCompra",
+            "fieldValues": "NAO_APLICAVEL,CONCURSO,SUPRIMENTO_DE_FUNDOS,POR_INTEGRACAO_DE_DADOS_CONTABEIS,TOMADA_DE_PRECO,CONVITE,CONCORRENCIA,DISPENSA__DE_LICITACAO,PREGAO,INEXIGIBILIDADE,DIRETA"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "StatusSolicitacaoCompra",
+            "fieldValues": "AGUARDANDO_APROVACAO,APROVADO,NEGADO"
+        },
+        {
+            "fieldName": "tipoOrcamento",
+            "fieldType": "TipoOrcamentoCompra",
+            "fieldValues": "MAO_DE_OBRA_E_MATERIAL,MATERIAL,MAO_DE_OBRA,SERVICO"
+        },
+        {
+            "fieldName": "dataSolicitacao",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "justificativa",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prazo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "origem",
+            "fieldType": "OrigemProduto",
+            "fieldValues": "NACIONAL,ESTRANGEIRO,IMPORTACAO_DIRETA"
+        }
+    ],
+    "changelogDate": "20180530011407",
+    "entityTableName": "solicitacao_compra",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

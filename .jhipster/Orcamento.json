@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "solicitacaoCompra",
+            "otherEntityName": "solicitacaoCompra",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itens",
+            "otherEntityName": "orcamentoItem",
+            "otherEntityRelationshipName": "orcamento"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prazoEntrega",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "validade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011409",
+    "entityTableName": "orcamento",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "otherEntityField": "logradouro",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pessoa"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "nacionalidade",
+            "otherEntityName": "pais",
+            "otherEntityRelationshipName": "pessoa"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cnpjCpf",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataCadastro",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "telefone",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011331",
+    "entityTableName": "pessoa",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

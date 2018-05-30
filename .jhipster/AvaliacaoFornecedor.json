@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fornecedor",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "avlForTabelaItem",
+            "otherEntityName": "avlForTabelaItem",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nota",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180530011404",
+    "entityTableName": "avaliacao_fornecedor",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

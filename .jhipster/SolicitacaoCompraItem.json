@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "itens",
+            "relationshipName": "solicitacaoCompra",
+            "otherEntityName": "solicitacaoCompra",
+            "otherEntityField": "numero",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "produto",
+            "otherEntityName": "produto",
+            "otherEntityField": "nome",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "item",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "qtd",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valorUnitario",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011408",
+    "entityTableName": "solicitacao_compra_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

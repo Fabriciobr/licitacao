@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fornecedor",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoCertidao",
+            "fieldValues": "TRABALHISTA,OUTRAS_CERTIDOES,FAZENDA_MUNICIPAL,INSS,FGTS,PIS_PASEP,IPES,FAZENDA_FEDERAL,FAZENDA_ESTADUA"
+        },
+        {
+            "fieldName": "dataEmissao",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataValidade",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180530011403",
+    "entityTableName": "certidao_fornecedor",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

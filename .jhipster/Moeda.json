@@ -3,16 +3,16 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "codigo",
+            "fieldName": "nome",
             "fieldType": "String"
         },
         {
-            "fieldName": "nome",
+            "fieldName": "codigo",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180521112119",
-    "entityTableName": "entidade",
+    "changelogDate": "20180530011337",
+    "entityTableName": "moeda",
     "dto": "no",
     "pagination": "no",
     "service": "no",

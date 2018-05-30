@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fornecedor",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20180530011411",
+    "entityTableName": "orcamento_fornecedor_valor",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

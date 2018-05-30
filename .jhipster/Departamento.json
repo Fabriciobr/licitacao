@@ -3,14 +3,8 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "unidadeMedida",
-            "otherEntityName": "unidadeMedida",
-            "otherEntityField": "nome"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "classe",
-            "otherEntityName": "classeProduto",
+            "relationshipName": "unidadeOrganizacional",
+            "otherEntityName": "unidadeOrganizacional",
             "otherEntityField": "nome"
         }
     ],
@@ -18,10 +12,14 @@
         {
             "fieldName": "nome",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20180521112115",
-    "entityTableName": "produto",
+    "changelogDate": "20180530011329",
+    "entityTableName": "departamento",
     "dto": "no",
     "pagination": "no",
     "service": "no",

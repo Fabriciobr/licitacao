@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fornecedor",
+            "otherEntityName": "fornecedor",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "departamento",
+            "otherEntityName": "departamento",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "items",
+            "otherEntityName": "entradaItem",
+            "otherEntityRelationshipName": "saida"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "dataHora",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "tipoMovimento",
+            "fieldType": "TipoMovimento",
+            "fieldValues": "MOVIMENTO,ABERTURA,AJUSTE,ESTORNO"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011343",
+    "entityTableName": "entrada",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

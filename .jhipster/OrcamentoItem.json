@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "orcamento",
+            "otherEntityName": "orcamento",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "produto",
+            "otherEntityName": "produto",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "valores",
+            "otherEntityName": "orcamentoFornecedorValor",
+            "otherEntityRelationshipName": ""
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "qtd",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180530011410",
+    "entityTableName": "orcamento_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

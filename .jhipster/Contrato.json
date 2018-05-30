@@ -1,0 +1,135 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ocorrencias",
+            "otherEntityName": "ocorrenciaContrato",
+            "otherEntityRelationshipName": "contrato"
+        },
+        {
+            "relationshipName": "contrato",
+            "otherEntityName": "contrato",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "aditivos",
+            "otherEntityName": "contrato",
+            "otherEntityRelationshipName": "contrato"
+        },
+        {
+            "relationshipName": "contrato",
+            "otherEntityName": "contrato",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "recisoes",
+            "otherEntityName": "contrato",
+            "otherEntityRelationshipName": "contrato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "dotacoes",
+            "otherEntityName": "dotacaoContrato",
+            "otherEntityRelationshipName": "contrato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "empenhos",
+            "otherEntityName": "empenhoContrato",
+            "otherEntityRelationshipName": "contrato"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pessoa",
+            "otherEntityName": "pessoa",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "unidadeOrganizacional",
+            "otherEntityName": "unidadeOrganizacional",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "moeda",
+            "otherEntityName": "moeda",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "grupo",
+            "otherEntityName": "grupoContrato",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "ContratoTipo",
+            "fieldValues": "CONTRATO,ADITIVO_VALOR,ADITIVO_PRAZO,ADITIVO_VALOR_PRAZO,RESCISAO,TERMO_CESSAO,TERMO_COMPROMISSO,CREDENCIAMENTO,REINTEGRACAO_DE_SALDO,SUB_CONTRATACAO"
+        },
+        {
+            "fieldName": "dataVigenciaInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataVigenciaFim",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "dataPublicacao",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "meioPublicacao",
+            "fieldType": "MeioPublicacao",
+            "fieldValues": "NAO_SE_APLICA,INTERNET,DIARIO_OFICIAL,DIARIO_PRIVATIVO,JORNAL,REVISTA,IMPRESSO,TELEVISAO,RADIO,OUTDOOR,PAINEL_ELETRONICO,SONORIZACAO_FIXA,SONORIZACAO_MOVEL,MURAL"
+        },
+        {
+            "fieldName": "modalidadeLicitacao",
+            "fieldType": "ModalidadeLicitacao",
+            "fieldValues": "CARTA_CONVITE,CONCORRENCIA,CONCURSO,DISPENSA,INEXIGIBILIDADE,LEILAO,PREGAO_ELETRONICO,PREGAO_PRESENCIAL,REGISTRO_PRECO,TOMADA_DE_PRECO"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "StatusContrato",
+            "fieldValues": "ATIVO,ENCERRADO,CANCELADO,RESCINDIDO,VIGENCIA_ENCERRADA,SEM_SALDO"
+        },
+        {
+            "fieldName": "objeto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "processoAdm",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "licitacao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011419",
+    "entityTableName": "contrato",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

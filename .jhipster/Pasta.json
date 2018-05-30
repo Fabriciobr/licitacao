@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pastaMae",
+            "otherEntityName": "pasta",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pastas",
+            "otherEntityName": "pasta",
+            "otherEntityRelationshipName": "pastaMae"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "arquivos",
+            "otherEntityName": "arquivo",
+            "otherEntityRelationshipName": "pasta"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011417",
+    "entityTableName": "pasta",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

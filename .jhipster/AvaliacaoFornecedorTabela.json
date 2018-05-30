@@ -9,10 +9,14 @@
         {
             "fieldName": "nome",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "peso",
+            "fieldType": "Float"
         }
     ],
-    "changelogDate": "20180521112119",
-    "entityTableName": "entidade",
+    "changelogDate": "20180530011406",
+    "entityTableName": "avaliacao_fornecedor_tabela",
     "dto": "no",
     "pagination": "no",
     "service": "no",

@@ -6,12 +6,31 @@
             "otherEntityName": "licitacao",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "protocolo",
+            "otherEntityName": "protocolo",
+            "otherEntityField": "numero"
         }
     ],
     "fields": [
         {
-            "fieldName": "nome",
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "descricao",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "dados",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "Instant"
         }
     ],
     "changelogDate": "20180521112118",

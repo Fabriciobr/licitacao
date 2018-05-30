@@ -1,0 +1,94 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lotacoes",
+            "otherEntityName": "lotacaoBem",
+            "otherEntityRelationshipName": "bem"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ocorrencias",
+            "otherEntityName": "ocorrenciaBem",
+            "otherEntityRelationshipName": "bem"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "manutensoes",
+            "otherEntityName": "manutencaoBem",
+            "otherEntityRelationshipName": "bem"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "avaliacoes",
+            "otherEntityName": "avaliacaoBem",
+            "otherEntityRelationshipName": "bem"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "seguros",
+            "otherEntityName": "seguro",
+            "otherEntityRelationshipName": "bem"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "unidadeOrganizacional",
+            "otherEntityName": "unidadeOrganizacional",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "classeProduto",
+            "otherEntityName": "classeProduto",
+            "otherEntityField": "local"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "anoFabricacao",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "dataAquisicao",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "bemStatus",
+            "fieldType": "BemStatus",
+            "fieldValues": "ATIVO,INATIVO,CEDIDO"
+        },
+        {
+            "fieldName": "bemEstado",
+            "fieldType": "BemEstado",
+            "fieldValues": "NOVO,BOM,RECUPERAVEL,INSERVIVEL"
+        },
+        {
+            "fieldName": "tipoAquisicao",
+            "fieldType": "TipoAquisicao",
+            "fieldValues": "COMPRA,DOACAO,CESSAO,PERMUTA,FABRICACAO,LOCACAO,DACAO,TRANSFERENCIA"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011355",
+    "entityTableName": "bem",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "processoCompra",
+            "otherEntityName": "processoCompra",
+            "otherEntityField": "numero"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "item",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valorAprovado",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "qtdAprovada",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "qtd",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180530011413",
+    "entityTableName": "processo_compra_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

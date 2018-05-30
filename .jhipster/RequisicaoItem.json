@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "produto",
+            "otherEntityName": "produto",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "requisicao",
+            "otherEntityName": "requisicao",
+            "otherEntityField": "numero"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "item",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "quantidade",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorEstimado",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valorTotal",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20180530011346",
+    "entityTableName": "requisicao_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

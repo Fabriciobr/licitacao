@@ -6,12 +6,25 @@
             "otherEntityName": "licitacao",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pessoa",
+            "otherEntityName": "pessoa",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "certidoes",
+            "otherEntityName": "certidaoFornecedor",
+            "otherEntityRelationshipName": "fornecedor"
         }
     ],
     "fields": [
         {
-            "fieldName": "nome",
-            "fieldType": "String"
+            "fieldName": "tipoAtividade",
+            "fieldType": "TipoAtividade",
+            "fieldValues": "OUTROS,INDUSTRIA_OU_COMERCIO,PRESTACAO_DE_SERVICOS,COMERCIO_E_SERVICOS,ORGAO_PUBLICO"
         }
     ],
     "changelogDate": "20180521112113",

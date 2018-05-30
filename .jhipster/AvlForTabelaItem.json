@@ -3,9 +3,15 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "entidade",
-            "otherEntityName": "entidade",
+            "relationshipName": "tabela",
+            "otherEntityName": "avlForTabelaItem",
             "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itens",
+            "otherEntityName": "avlForTabelaItem",
+            "otherEntityRelationshipName": "tabela"
         }
     ],
     "fields": [
@@ -18,20 +24,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "telefone",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "email",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "cnpj",
-            "fieldType": "String"
+            "fieldName": "peso",
+            "fieldType": "Float"
         }
     ],
-    "changelogDate": "20180521112116",
-    "entityTableName": "unidade_organizacional",
+    "changelogDate": "20180530011405",
+    "entityTableName": "avl_for_tabela_item",
     "dto": "no",
     "pagination": "no",
     "service": "no",

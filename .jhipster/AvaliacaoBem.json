@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bem",
+            "otherEntityName": "bem",
+            "otherEntityField": "nome"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tipoAvaliacao",
+            "fieldType": "TipoAvaliacaoBem",
+            "fieldValues": "DEPRECIACAO,VALORIZACAO"
+        },
+        {
+            "fieldName": "tempoUtilizacao",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "porcentagem",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "dataHora",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "obs",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180530011400",
+    "entityTableName": "avaliacao_bem",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

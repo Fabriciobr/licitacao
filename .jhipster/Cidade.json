@@ -2,10 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
             "relationshipType": "many-to-one",
-            "relationshipName": "entidade",
-            "otherEntityName": "entidade",
-            "otherEntityField": "nome"
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "uf",
+            "otherEntityName": "uf",
+            "otherEntityRelationshipName": "cidade"
         }
     ],
     "fields": [
@@ -18,20 +24,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "telefone",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "email",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "cnpj",
+            "fieldName": "sigla",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180521112116",
-    "entityTableName": "unidade_organizacional",
+    "changelogDate": "20180530011333",
+    "entityTableName": "cidade",
     "dto": "no",
     "pagination": "no",
     "service": "no",
